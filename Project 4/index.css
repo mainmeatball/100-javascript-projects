@@ -34,7 +34,7 @@ body {
 	font-size: 20px;
 }
 
-#input-message {
+.input-message {
 	height: 30px;
 	width: 85%;
 }
