@@ -9,12 +9,12 @@ function lowerCount() {
 }
 
 function afterUpdate() {
-	number = document.getElementById('number').textContent
-	if (number > 0) {
-		document.getElementById('number').style.color = 'green'
-	} else if (number < 0) {
-		document.getElementById('number').style.color = 'red'
+	number = document.getElementById('number')
+	if (number.textContent > 0) {
+		number.style.color = 'green'
+	} else if (number.textContent < 0) {
+		number.style.color = 'red'
 	} else {
-		document.getElementById('number').style.color = 'white'
+		number.style.color = 'white'
 	}
 }
