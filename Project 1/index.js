@@ -1,4 +1,4 @@
-let colors = [
+const colors = [
   "AliceBlue",
   "AntiqueWhite",
   "Aqua",
