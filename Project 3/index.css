@@ -1,0 +1,48 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #B49D98
+}
+
+.wrapper {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	height: 55%;
+	width: 30%;
+	background-color: #DACFCC;
+}
+
+.generate-quote {
+	background: #3BBBAF;
+	border-color: #DACFCC;
+	height: 12%;
+	width: 50%;
+	font-size: 150%;
+	color: #FFFFFF;
+	font-family: robot;
+	margin-top: 25px;
+}
+
+.full-quote {
+	padding: 0px;
+	color: grey;
+	font-size: 25px;
+	margin: 10px 30px;
+}
+
+.quote-text {
+	padding-left: 10px;
+}
+
+.author {
+	color: #3BBBAF;
+	font-size: 18px;
+	margin: 0px 30px;
+	align-self: flex-end;
+}
