@@ -29,18 +29,18 @@ body {
 	margin-top: 25px;
 }
 
-#full-quote {
+.full-quote {
 	padding: 0px;
 	color: grey;
 	font-size: 25px;
 	margin: 10px 30px;
 }
 
-#quote-text {
+.quote-text {
 	padding-left: 10px;
 }
 
-#author {
+.author {
 	color: #3BBBAF;
 	font-size: 18px;
 	margin: 0px 30px;
