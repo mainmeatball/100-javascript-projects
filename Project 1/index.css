@@ -1,0 +1,20 @@
+html, body {
+	height: 100%;
+}
+
+.wrapper {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.change-color {
+	background: none;
+	border-color: grey;
+	height: 40px;
+	width: 100px;
+	border-radius: 5px;
+	font-size: 18px;
+	font-family: robot;
+}
