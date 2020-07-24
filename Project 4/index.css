@@ -1,0 +1,40 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #8EB8B3
+}
+
+.wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	height: 35%;
+	width: 30%;
+	background-color: #DACFCC;
+}
+
+.submit-message {
+	background: #8EB8B3;
+	border-color: #DACFCC;
+	height: 12%;
+	width: 25%;
+	font-size: 100%;
+	color: #FFFFFF;
+	font-family: robot;
+	margin-top: 25px;
+}
+
+.message {
+	font-size: 20px;
+}
+
+#input-message {
+	height: 30px;
+	width: 85%;
+}
