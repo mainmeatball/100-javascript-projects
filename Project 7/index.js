@@ -13,6 +13,10 @@ new Reviewer('resources/avatar3.jpeg', 'Craig','There are many variations of pas
 ]
 let index = 0
 
+function initReviewer() {
+	setReviewer(reviewers[0])
+}
+
 function switchLeft() {
 	index = index == 0 ? reviewers.length - 1 : index - 1
 	setReviewer(reviewers[index])
