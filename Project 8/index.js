@@ -52,36 +52,37 @@ function filter(param) {
 }
 
 function doFilter(imageArray) {
-	let col1 = document.getElementById('col1');
-	let col2 = document.getElementById('col2');
-	let col3 = document.getElementById('col3');
+	Array.from(document.querySelectorAll('.flex-grid > *')).forEach(element => element.remove());
 
-	let columns = [col1, col2, col3];
-	let index = 0;
-
-	columns.forEach(col => {
-		while (col.lastChild) {
-  			col.removeChild(col.lastChild);
-		}
-	})
+	let grid = document.getElementById('flex-grid');
 
 	imageArray.forEach(vehicle => {
 		let frame = document.createElement('div');
 		frame.classList.add('frame');
-		let photo = document.createElement('img');
-		photo.src = vehicle.img;
-		let title = document.createElement('div');
-		title.classList.add('title');
-		let naming = document.createElement('p');
-		let name = document.createTextNode(vehicle.naming);
-		naming.appendChild(name);
-		let price = document.createElement('p');
-		let p = document.createTextNode(vehicle.price);
-		price.appendChild(p);
-		title.appendChild(naming);
-		title.appendChild(price);
+		let photo = createImage(vehicle.img);
+		let title = createTitle(vehicle.naming, vehicle.price);
 		frame.appendChild(photo);
-		frame.appendChild(title)
-		columns[index++ % columns.length].appendChild(frame);
+		frame.appendChild(title);
+		grid.appendChild(frame);
 	});
+}
+
+function createImage(src) {
+	let photo = document.createElement('img');
+	photo.src = src;
+	return photo;
+}
+
+function createTitle(name, price) {
+	let title = document.createElement('div');
+	title.classList.add('title');
+	let naming = document.createElement('p');
+	let n = document.createTextNode(name);
+	naming.appendChild(n);
+	let pricing = document.createElement('p');
+	let p = document.createTextNode(price);
+	pricing.appendChild(p);
+	title.appendChild(naming);
+	title.appendChild(pricing);
+	return title;
 }
