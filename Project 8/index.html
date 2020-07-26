@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+</head>
+<body onload="placeImages()">
+	<div class="top-wrapper">
+		<p class="logo">Some Store</p>
+		<div class="filters">
+			<button id="all" class="button all" onclick="filter('all')">ALL</button>
+			<button id="car" class="button car" onclick="filter('cars')">CAR</button>
+			<button id="bicycle" class="button bicycle" onclick="filter('bicycles')">BICYCLE</button>
+			<button id="bike" class="button bike" onclick="filter('bikes')">BIKE</button>
+			<button id="plane" class="button plane" onclick="filter('planes')">PLANE</button>
+		</div>
+		<form action="#" class="search" onsubmit="filter('input')">
+			<button id="search-button"><i class="fa fa-search"></i></button>
+  			<input id="search-field">
+		</form>
+		<div id="flex-grid" class="flex-grid"></div>
+	</div>
+	<script src="index.js"></script>
+</body>
+</html>
