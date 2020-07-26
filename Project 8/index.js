@@ -13,6 +13,18 @@ const planes = [new Vehicle('resources/plane1.jpg', 'Boeing', '1.000.000$'), new
 
 const allVehicles = cars.concat(bikes, bicycles, planes);
 
+const vehicleConfig = {
+	'all': () => doFilter(allVehicles),
+	'cars': () => doFilter(cars),
+	'bikes': () => doFilter(bikes),
+	'bicycles': () => doFilter(bicycles),
+	'planes': () => doFilter(planes),
+  	'input': () => {
+  		let filteredVehicles = allVehicles.filter(v => v.naming.toUpperCase().includes(document.getElementById('search-field').value.toUpperCase()))
+		doFilter(filteredVehicles);
+  	}
+}
+
 function handleKeyPress(e) {
 	let key = e.keyCode || e.which;
   	if (key == 13) {
@@ -25,30 +37,7 @@ function placeImages() {
 }
 
 function filter(param) {
-	switch (param) {
-		case 'all':
-			doFilter(allVehicles);
-			break;
-		case 'cars':
-			doFilter(cars);
-			break;
-		case 'bikes':
-			doFilter(bikes);
-			break;
-		case 'bicycles':
-			doFilter(bicycles);
-			break;
-		case 'planes':
-			doFilter(planes);
-			break;
-		case 'input':
-			let filteredVehicles = allVehicles.filter(v => v.naming.toUpperCase().includes(document.getElementById('search-field').value.toUpperCase()))
-			doFilter(filteredVehicles);
-			break;
-		default:
-			throw new Error('Illegal Argument Exception');
-			break;
-	}
+	vehicleConfig[param]();
 }
 
 function doFilter(imageArray) {
