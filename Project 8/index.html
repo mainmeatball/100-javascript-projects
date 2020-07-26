@@ -14,10 +14,10 @@
 			<button id="bike" class="button bike" onclick="filter('bikes')">BIKE</button>
 			<button id="plane" class="button plane" onclick="filter('planes')">PLANE</button>
 		</div>
-		<div class="search">
-			<button id="search-button" onclick="filter('input')"><i class="fa fa-search"></i></button>
-			<input id="search-field" onkeypress="handleKeyPress(event)">
-		</div>
+		<form action="#" class="search" onsubmit="filter('input')">
+			<button id="search-button"><i class="fa fa-search"></i></button>
+  			<input id="search-field">
+		</form>
 		<div id="flex-grid" class="flex-grid"></div>
 	</div>
 	<script src="index.js"></script>

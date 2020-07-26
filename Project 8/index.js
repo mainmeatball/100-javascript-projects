@@ -25,13 +25,6 @@ const vehicleConfig = {
   	}
 }
 
-function handleKeyPress(e) {
-	let key = e.keyCode || e.which;
-  	if (key == 13) {
-     	filter('input');
-  	}
-}
-
 function placeImages() {
 	filter('all');
 }
