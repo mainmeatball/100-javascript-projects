@@ -1,0 +1,146 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #EEEEEE;
+}
+
+.top-wrapper {
+	height: 85%;
+	width: 40%;
+	border: 5px solid black;
+	padding: 25px;
+}
+
+.zero {
+	grid-area: zero;
+}
+
+.one {
+	grid-area: one;
+}
+
+.two {
+	grid-area: two;
+}
+
+.three {
+	grid-area: three;
+}
+
+.four {
+	grid-area: four;
+}
+
+.five {
+	grid-area: five;
+}
+
+.six {
+	grid-area: six;
+}
+
+.seven {
+	grid-area: seven;
+}
+
+.eight {
+	grid-area: eight;
+}
+
+.nine {
+	grid-area: nine;
+}
+
+.dot {
+	grid-area: dot;
+}
+
+.ac {
+	grid-area: ac;
+}
+
+.divide {
+	grid-area: divide;
+}
+
+.multiply {
+	grid-area: multiply;
+}
+
+.minus {
+	grid-area: minus;
+}
+
+.plus {
+	grid-area: plus;
+}
+
+.equals {
+	grid-area: equals;
+}
+
+.input {
+	width: calc(100% - 20px);
+	height: 50px;
+	margin-bottom: 25px;
+	font-weight: bold;
+	font-size: 30px;
+	padding-left: 20px;
+	pointer-events: none;
+}
+
+.button {
+	border-radius: 50%;
+	font-weight: bold;
+	font-size: 30px;
+	transition: 0.4s;
+	cursor: pointer;
+}
+
+.number {
+	background-color: #BBBBBB;
+}
+
+.operation {
+	background-color: #FF7900;
+}
+
+.number:hover {
+	background-color: #DDDDDD;
+}
+
+.operation:hover {
+	background-color: #FFA900;
+}
+
+.operation:focus:not(.equals) {
+	background-color: #FFA900;
+}
+
+.ac:hover {
+	background-color: #FFFFFF;
+}
+
+.button:focus {
+	outline: none;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(4, calc(100% / 4 - 16px));
+	grid-template-rows: repeat(5, 55%);
+	grid-template-areas: 
+    	"ac    .     .      divide"
+    	"seven eight nine   multiply"
+    	"four  five  six    minus"
+    	"one   two   three  plus"
+    	"zero  zero  dot    equals";
+	column-gap: 25px;
+  	row-gap: 15px;
+  	height: 30%;
+}
