@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link rel="stylesheet" href="index.css">
+</head>
+<body onload="onload()">
+	<div id="top-wrapper" class="top-wrapper">
+		<input id="input" class="input">
+		<div class="grid">
+			<button id="ac"       class="button ac" onclick="clearInput()">C</button>
+			<button id="divide"   class="button operation divide" onclick="operate('/')">/</button>
+			<button id="seven"    class="button number seven" onclick="addNumberUI(7)">7</button>
+			<button id="eight"    class="button number eight" onclick="addNumberUI(8)">8</button>
+			<button id="nine"     class="button number nine" onclick="addNumberUI(9)">9</button>
+			<button id="multiply" class="button operation multiply" onclick="operate('*')">*</button>
+			<button id="four"     class="button number four" onclick="addNumberUI(4)">4</button>
+			<button id="five"     class="button number five" onclick="addNumberUI(5)">5</button>
+			<button id="six"      class="button number six" onclick="addNumberUI(6)">6</button>
+			<button id="minus"    class="button operation minus" onclick="operate('-')">-</button>
+			<button id="one"      class="button number one" onclick="addNumberUI(1)">1</button>
+			<button id="two"      class="button number two" onclick="addNumberUI(2)">2</button>
+			<button id="three"    class="button number three" onclick="addNumberUI(3)">3</button>
+			<button id="plus"     class="button operation plus" onclick="operate('+')">+</button>
+			<button id="zero"     class="button number zero" onclick="addNumberUI(0)">0</button>
+			<button id="dot"      class="button number dot" onclick="addDot()">.</button>
+			<button id="equals"   class="button operation equals" onclick="operate('=')">=</button>
+		</div>
+	</div>
+	<script src="index.js"></script>
+</body>
+</html>
