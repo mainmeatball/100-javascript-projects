@@ -1,5 +1,3 @@
-const wrapper = $('#wrapper')[0];
-
 const calculateButton = $('#calculate-button')[0];
 
 const billAmount = $('#bill-amount')[0];
@@ -23,20 +21,10 @@ result.hide();
 animation.hide();
 info.hide();
 
-let amountErrorHeight = 0;
-let personErrorHeight = 0;
-let tipErrorHeight = 0;
-
 const checkValidity = {
 	'billAmount': () => billAmount.checkValidity(),
 	'personNumber': () => personNumber.checkValidity(),
 	'tipPercent': () => tipPercent.checkValidity()
-}
-
-const heightField = {
-	'billAmount': (value) => amountErrorHeight = value,
-	'personNumber': (value) => personErrorHeight = value,
-	'tipPercent': (value) => tipErrorHeight = value
 }
 
 const tips = {
@@ -46,27 +34,21 @@ const tips = {
 }
 
 function validateInputs() {
-	validate('billAmount', amountValidation);
-	validate('personNumber', personValidation);
-	validate('tipPercent', tipValidation);
-	const sumHeight = amountErrorHeight + personErrorHeight + tipErrorHeight;
-	expandFrame(sumHeight);
-	return !sumHeight;
+	let validAmount = validate('billAmount', amountValidation);
+	let validPeople = validate('personNumber', personValidation);
+	let validTip = validate('tipPercent', tipValidation);
+	return validAmount && validPeople && validTip;
 }
 
 function validate(input, validField) {
 	if (checkValidity[input]()) {
 		validField.hide();
-		heightField[input](0);
+		return true;
 	} else {
 		validField.show();
 		result.hide();
-		heightField[input](50);
+		return false;
 	}
-}
-
-function expandFrame(sum) {
-	wrapper.style.height = 'calc(66% + ' + sum + 'px)';
 }
 
 function calculateTip() {
@@ -81,8 +63,6 @@ function calculateTip() {
        animation.hide(); 
        info.show();
 	}, 2000);
-
-	expandFrame(200);
 
 	const bill = +billAmount.value;
 	const people = +personNumber.value;
