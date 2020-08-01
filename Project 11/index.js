@@ -86,7 +86,7 @@ function calculateTip() {
 
 	const bill = +billAmount.value;
 	const people = +personNumber.value;
-	const tip = tipPercent.selectedIndex;
+	const tip = +tipPercent.value;
 	
 	const tipValue = bill * tips[tip];
 	const total = bill + tipValue;
