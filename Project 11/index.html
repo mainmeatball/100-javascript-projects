@@ -15,7 +15,7 @@
 				<p class="label bill-amount-label">How Much Was Your Bill?</p>
 				<div class="icon-wrapper">
 					<div class="icon dollar"><i class="fa fa-usd"></i></div>
-					<input id="bill-amount" class="bill-amount">
+					<input id="bill-amount" class="bill-amount" type="number" min="0.01" step="0.01" required>
 				</div>
 			</div>
 			<div id="amount-validation" class="validation amount-validation">
@@ -25,7 +25,7 @@
 				<p class="label person-number-label">How Many People Sharing The Bill?</p>
 				<div class="icon-wrapper">
 					<div class="icon user"><i class="fa fa-user"></i></div>
-					<input id="person-number" class="person-number">
+					<input id="person-number" class="person-number" type="number" min="1" required>
 				</div>
 			</div>
 			<div id="person-validation" class="validation amount-validation">
@@ -33,11 +33,11 @@
 			</div>
 			<div class="tip-percent-group">
 				<p class="label tip-percent-label">How Was Your Service</p>
-				<select id="tip-percent">
-	  				<option>Choose...</option>
-	  				<option>Great - 20%</option>
-	  				<option>Good - 10%</option>
-	  				<option>Bad - 2%</option>
+				<select id="tip-percent" required>
+	  				<option value="">Choose...</option>
+	  				<option value="1">Great - 20%</option>
+	  				<option value="2">Good - 10%</option>
+	  				<option value="3">Bad - 2%</option>
 				</select>
 			</div>
 			<div id="tip-validation" class="validation tip-validation">

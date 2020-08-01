@@ -27,10 +27,10 @@ let amountErrorHeight = 0;
 let personErrorHeight = 0;
 let tipErrorHeight = 0;
 
-const inputPredicate = {
-	'billAmount': () => !billAmount.value.length || billAmount.value <= 0,
-	'personNumber': () => !personNumber.value.length || personNumber.value <= 0,
-	'tipPercent': () => !tipPercent.selectedIndex
+const checkValidity = {
+	'billAmount': () => billAmount.checkValidity(),
+	'personNumber': () => personNumber.checkValidity(),
+	'tipPercent': () => tipPercent.checkValidity()
 }
 
 const heightField = {
@@ -55,13 +55,13 @@ function validateInputs() {
 }
 
 function validate(input, validField) {
-	if (inputPredicate[input]()) {
+	if (checkValidity[input]()) {
+		validField.hide();
+		heightField[input](0);
+	} else {
 		validField.show();
 		result.hide();
 		heightField[input](50);
-	} else {
-		validField.hide();
-		heightField[input](0);
 	}
 }
 
