@@ -1,12 +1,27 @@
 const calculateButton = $('#calculate-button')[0];
 
-const billAmount = $('#bill-amount')[0];
-const personNumber = $('#person-number')[0];
-const tipPercent = $('#tip-percent')[0];
+class InputEntity {
+	constructor(input, validation) {
+		this.input = input;
+		this.validation = validation;
+	}
 
-const amountValidation = $('#amount-validation');
-const personValidation = $('#person-validation');
-const tipValidation = $('#tip-validation');
+	isValid() {
+		return this.input.checkValidity();
+	}
+
+	hideValidationMsg() {
+		this.validation.hide();
+	}
+
+	showValidationMsg() {
+		this.validation.show();
+	}
+}
+
+const billAmount = new InputEntity($('#bill-amount')[0], $('#amount-validation'));
+const personNumber = new InputEntity($('#person-number')[0], $('#person-validation'));
+const tipPercent = new InputEntity($('#tip-percent')[0], $('#tip-validation'));
 
 const tipAmount = $('#tip-amount')[0];
 const totalAmount = $('#total-amount')[0];
@@ -23,12 +38,6 @@ info.hide();
 
 const UPLOAD_ANIMATION_DURATION = 3000;
 
-const checkValidity = {
-	'billAmount': () => billAmount.checkValidity(),
-	'personNumber': () => personNumber.checkValidity(),
-	'tipPercent': () => tipPercent.checkValidity()
-}
-
 const tips = {
 	1: 0.2,
 	2: 0.1,
@@ -36,28 +45,26 @@ const tips = {
 }
 
 function validateInputs() {
-	let validAmount = validate('billAmount', amountValidation);
-	let validPeople = validate('personNumber', personValidation);
-	let validTip = validate('tipPercent', tipValidation);
-	return validAmount && validPeople && validTip;
+	return [billAmount, personNumber, tipPercent].every(el => el.isValid());
 }
 
-function validate(input, validField) {
-	if (checkValidity[input]()) {
-		validField.hide();
-		return true;
-	} else {
-		validField.show();
-		result.hide();
-		return false;
-	}
+function assignVisibility() {
+	[billAmount, personNumber, tipPercent].forEach(el => {
+		el.isValid() 
+			? el.hideValidationMsg()
+			: (
+				el.showValidationMsg(),
+				result.hide()
+			)
+		})
 }
 
 function calculateTip() {
-	const allValid = validateInputs();
-	if (!allValid) {
+	if (!validateInputs()) {
 		return;
 	}
+	assignVisibility();
+
 	result.show();
 	info.hide();
 	animation.show();
@@ -67,9 +74,9 @@ function calculateTip() {
        info.show();
 	}, UPLOAD_ANIMATION_DURATION);
 
-	const bill = +billAmount.value;
-	const people = +personNumber.value;
-	const tip = +tipPercent.value;
+	const bill = +billAmount.input.value;
+	const people = +personNumber.input.value;
+	const tip = +tipPercent.input.value;
 	
 	const tipValue = bill * tips[tip];
 	const total = bill + tipValue;
