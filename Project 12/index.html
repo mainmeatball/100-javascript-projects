@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+	<div id="wrapper" class="wrapper">
+		<h1 class="header">To Do List</h1>
+		<div class="form">
+			<input id="input">
+			<button onclick="addItem()">New Item</button>
+		</div>
+		<div id="todo-list" class="todo-list">
+			<template id="todo-el-template">
+				<div class="todo-el">
+					<p id="todo-el-name"></p>
+					<div class="buttons">
+						<button class="check" onclick="checkItem(event)"><i class="fa fa-check-circle-o"></i></button>
+						<button class="edit" onclick="editItem(event)"><i class="fa fa-pencil-square-o"></i></button>
+						<button class="remove" onclick="removeItem(event)"><i class="fa fa-times-circle-o"></i></button>
+					</div>
+				</div>
+			</template>
+		</div>
+		<button class="clear-all-items" onclick="clearItems()">Clear Items</button>
+	</div>
+	<script src="index.js"></script>
+</body>
+</html>

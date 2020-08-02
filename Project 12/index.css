@@ -1,0 +1,100 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	background-color: #F5F5F5;
+	font-family: helvetica;
+	color: #333333;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.wrapper {
+	top: 0;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	width: 50%;
+}
+
+.form {
+	width: 100%;
+	display: flex;
+	margin-bottom: 10px;
+}
+
+.form > input {
+	flex: 1;
+	font-size: 20px;
+	padding: 8px;
+	border: 1px solid #333333;
+	border-right: none;
+}
+
+button {
+	font-weight: bold;
+	font-size: 1em;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.clear-all-items {
+	height: 42px;
+}
+
+button:hover {
+	background-color: #666666;
+	color: #DDDDDD;
+}
+
+.todo-list {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.todo-el {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 20px;
+	margin: 10px 0;
+}
+
+.todo-el > p {
+	padding: 6px;
+}
+
+.buttons > button {
+	border: none;
+	background-color: #F5F5F5;
+}
+
+.buttons > button:focus {
+	outline: none;
+}
+
+.check {
+	color: green;
+}
+
+.edit {
+	color: blue;
+}
+
+.remove {
+	color: red;
+}
+
+.checked {
+	text-decoration: line-through;
+}
+
+.clear-all-items {
+	margin-top: 10px;
+}
