@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<div id="wrapper" class="wrapper">
+		<div class="header">
+			<p>TIP CALCULATOR</p>
+		</div>
+		<div id="frame-body" class="frame-body">
+			<div class="bill-amount-group">
+				<p class="label bill-amount-label">How Much Was Your Bill?</p>
+				<div class="icon-wrapper">
+					<div class="icon dollar"><i class="fa fa-usd"></i></div>
+					<input id="bill-amount" class="bill-amount" type="number" min="0.01" step="0.01" required>
+				</div>
+			</div>
+			<div id="amount-validation" class="validation amount-validation">
+				<p id="amount-validation-text">Value should be positive</p>
+			</div>
+			<div class="person-number-group">
+				<p class="label person-number-label">How Many People Sharing The Bill?</p>
+				<div class="icon-wrapper">
+					<div class="icon user"><i class="fa fa-user"></i></div>
+					<input id="person-number" class="person-number" type="number" min="1" required>
+				</div>
+			</div>
+			<div id="person-validation" class="validation amount-validation">
+				<p id="person-validation-text">Value should be positive</p>
+			</div>
+			<div class="tip-percent-group">
+				<p class="label tip-percent-label">How Was Your Service</p>
+				<select id="tip-percent" required>
+	  				<option value="">Choose...</option>
+	  				<option value="0.2">Great - 20%</option>
+	  				<option value="0.1">Good - 10%</option>
+	  				<option value="0.02">Bad - 2%</option>
+				</select>
+			</div>
+			<div id="tip-validation" class="validation tip-validation">
+				<p id="tip-validation-text">Please, choose valid value!</p>
+			</div>
+			<button id="calculate-button" class="calculate" onclick="process()">Calculate</button>
+			<div id="result" class="result">
+				<div id="animation" class="animation">
+					<div id="animation-col1" class="col col1"></div>
+					<div id="animation-col2" class="col col2"></div>
+					<div id="animation-col3" class="col col3"></div>
+				</div>
+				<div id="info" class="info">
+					<div class="row"><p>Tip Amount $ </p><p id="tip-amount" class="tip-amount"></p></div>
+					<div class="row"><p>Total Amount $ </p><p id="total-amount" class="total-amount"></p></div>
+					<div class="row"><p>Each Person Owes $ </p><p id="tip-per-person" class="tip-per-person"></p></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="index.js"></script>
+</body>
+</html>
