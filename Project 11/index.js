@@ -38,12 +38,6 @@ info.hide();
 
 const UPLOAD_ANIMATION_DURATION = 3000;
 
-const tips = {
-	1: 0.2,
-	2: 0.1,
-	3: 0.02
-}
-
 function validateInputs() {
 	return [billAmount, personNumber, tipPercent].every(el => el.isValid());
 }
@@ -78,7 +72,7 @@ function calculateTip() {
 	const people = +personNumber.input.value;
 	const tip = +tipPercent.input.value;
 	
-	const tipValue = bill * tips[tip];
+	const tipValue = bill * tip;
 	const total = bill + tipValue;
 	const perPerson = total / people;
 
