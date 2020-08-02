@@ -21,6 +21,8 @@ result.hide();
 animation.hide();
 info.hide();
 
+const UPLOAD_ANIMATION_DURATION = 3000;
+
 const checkValidity = {
 	'billAmount': () => billAmount.checkValidity(),
 	'personNumber': () => personNumber.checkValidity(),
@@ -57,12 +59,13 @@ function calculateTip() {
 		return;
 	}
 	result.show();
+	info.hide();
 	animation.show();
 
 	setTimeout(() =>  {
        animation.hide(); 
        info.show();
-	}, 2000);
+	}, UPLOAD_ANIMATION_DURATION);
 
 	const bill = +billAmount.value;
 	const people = +personNumber.value;

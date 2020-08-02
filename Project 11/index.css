@@ -128,8 +128,8 @@ button:hover {
 }
 
 @keyframes shrink {
-	from { height: 180px; }
-	to { height: 130px; }
+	from { transform: scaleY(1); }
+	to { transform: scaleY(0.7); }
 }
 
 .animation {
@@ -148,14 +148,15 @@ button:hover {
 	margin: 20px 15px 0px 15px;
 	animation-name: shrink;
 	animation-duration: 0.9s;
+	animation-timing-function: ease-out;
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
 }
 
 .col2 {
-	animation-delay: 0.5s;
+	animation-delay: 0.45s;
 }
 
 .col3 {
-	animation-delay: 1s;
+	animation-delay: 0.9s;
 }
