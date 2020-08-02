@@ -1,5 +1,3 @@
-const calculateButton = $('#calculate-button')[0];
-
 class InputEntity {
 	constructor(input, validation) {
 		this.input = input;
