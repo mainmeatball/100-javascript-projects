@@ -10,12 +10,8 @@ class InputEntity {
 		return this.input.checkValidity();
 	}
 
-	hideValidationMsg() {
-		this.validation.hide();
-	}
-
-	showValidationMsg() {
-		this.validation.show();
+	assignVisibility() {
+		this.isValid() ? this.validation.hide() : this.validation.show();
 	}
 }
 
@@ -38,24 +34,10 @@ info.hide();
 
 const UPLOAD_ANIMATION_DURATION = 3000;
 
-function validateInputs() {
-	return [billAmount, personNumber, tipPercent].every(el => el.isValid());
-}
-
-function assignVisibility() {
-	[billAmount, personNumber, tipPercent].forEach(el => {
-		el.isValid()
-			? el.hideValidationMsg()
-			: (
-				el.showValidationMsg(),
-				result.hide()
-			)
-		})
-}
-
 function calculateTip() {
 	if (!validateInputs()) {
 		assignVisibility();
+		result.hide();
 		return;
 	}
 
@@ -79,4 +61,12 @@ function calculateTip() {
 	tipAmount.textContent = tipValue;
 	totalAmount.textContent = total;
 	tipPerPerson.textContent = perPerson;
+}
+
+function validateInputs() {
+	return [billAmount, personNumber, tipPercent].every(el => el.isValid());
+}
+
+function assignVisibility() {
+	[billAmount, personNumber, tipPercent].forEach(el => el.assignVisibility());
 }
