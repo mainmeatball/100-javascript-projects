@@ -44,7 +44,7 @@ function validateInputs() {
 
 function assignVisibility() {
 	[billAmount, personNumber, tipPercent].forEach(el => {
-		el.isValid() 
+		el.isValid()
 			? el.hideValidationMsg()
 			: (
 				el.showValidationMsg(),
@@ -55,9 +55,9 @@ function assignVisibility() {
 
 function calculateTip() {
 	if (!validateInputs()) {
+		assignVisibility();
 		return;
 	}
-	assignVisibility();
 
 	result.show();
 	info.hide();
