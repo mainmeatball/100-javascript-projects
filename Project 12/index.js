@@ -1,8 +1,58 @@
+class TodoElement {
+	constructor(template) {
+		this.node = template;
+		this.nameInput = template.querySelector('.todo-el-name');
+		this.checkButton = template.querySelector('.check');
+		this.editButton = template.querySelector('.edit');
+		this.removeButton = template.querySelector('.remove');
+		this.domElement = template.querySelector('.todo-el');
+
+		this.nameInput.addEventListener("focusout", () => {
+			this.nameInput.readOnly = true;
+		});
+
+		this.checkButton.addEventListener('click', () => this.nameInput.classList.toggle('checked'));
+		
+		this.editButton.addEventListener('click', () => {
+			this.nameInput.readOnly = false;
+			this.nameInput.focus();
+		});
+
+		this.removeButton.addEventListener('click', () => {
+			this.domElement.remove();
+		});
+	}
+
+	updateName(name) {
+		this.nameInput.value = name;
+	}
+}
+
 class Page {
 	constructor(input, template, todoList) {
 		this.input = input;
 		this.template = template;
 		this.todoList = todoList;
+	}
+
+	clearInput() {
+		this.input.value = '';
+	}
+
+	addTodoElement(todoElement) {
+		this.todoList.appendChild(todoElement.domElement);
+	}
+
+	isDuplicate(name) {
+		return Array.from(this.todoList.querySelectorAll('.todo-el')).map(el => el.value).includes(name);
+	}
+
+	removeTodoElement(name) {
+		this.todoElementMap[name].remove();
+	}
+
+	clearTodoList() {
+		Array.from(this.todoList.querySelectorAll('.todo-el')).forEach(el => el.remove());
 	}
 }
 
@@ -10,50 +60,17 @@ const page = new Page(document.getElementById('input'),
 				 	  document.getElementById('todo-el-template'),
 					  document.getElementById('todo-list'));
 
-function addItem() {
-	if (duplicate(input.value)) {
+function addItem(event) {
+	event.preventDefault();
+	if (page.isDuplicate(input.value)) {
 		return;
 	}
-	const clone = page.template.content.cloneNode(true);
-	const itemName = clone.querySelector('#todo-el-name');
-	itemName.textContent = input.value;
-	page.todoList.appendChild(clone);
-}
-
-function checkItem(event) {
-	const elementNameParagraph = event.target.parentNode.parentNode.parentNode.querySelector('#todo-el-name');
-	check(elementNameParagraph);
-}
-
-function editItem(event) {
-	const elementNameParagraph = event.target.parentNode.parentNode.parentNode.querySelector('#todo-el-name');
-	elementNameParagraph.setAttribute('contentEditable', 'true');
-	const contentLength = elementNameParagraph.textContent.legnth;
-	elementNameParagraph.focus();
-	setCaretToEnd(elementNameParagraph);
-}
-
-function removeItem(event) {
-	event.target.parentNode.parentNode.parentNode.remove();
+	const todoElement = new TodoElement(page.template.content.cloneNode(true));
+	todoElement.updateName(input.value);
+	page.addTodoElement(todoElement);
+	page.clearInput();
 }
 
 function clearItems() {
-	Array.from(page.todoList.querySelectorAll('div')).forEach(el => el.remove());
-}
-
-function check(el) {
-	el.classList.contains('checked') ? el.classList.remove('checked') : el.classList.add('checked');
-}
-
-function setCaretToEnd(el) {
-	const range = document.createRange();
-	range.selectNodeContents(el);
-	range.collapse(false);
-	const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-}
-
-function duplicate(name) {
-	return Array.from(page.todoList.querySelectorAll('p')).map(el => el.textContent).includes(name);
+	page.clearTodoList();
 }

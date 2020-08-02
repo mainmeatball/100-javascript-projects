@@ -20,13 +20,13 @@ body {
 	width: 50%;
 }
 
-.form {
+form {
 	width: 100%;
 	display: flex;
 	margin-bottom: 10px;
 }
 
-.form > input {
+form > .inputField {
 	flex: 1;
 	font-size: 20px;
 	padding: 8px;
@@ -34,7 +34,7 @@ body {
 	border-right: none;
 }
 
-button {
+.button {
 	font-weight: bold;
 	font-size: 1em;
 	cursor: pointer;
@@ -45,7 +45,7 @@ button {
 	height: 42px;
 }
 
-button:hover {
+.button:hover {
 	background-color: #666666;
 	color: #DDDDDD;
 }
@@ -70,6 +70,17 @@ button:hover {
 	padding: 6px;
 }
 
+.todo-el-name {
+	background-color: #F5F5F5;
+	border: none;
+	flex: 1;
+	font-size: 20px;
+}
+
+.todo-el-name:focus {
+	outline: none;
+}
+
 .buttons > button {
 	border: none;
 	background-color: #F5F5F5;
@@ -77,6 +88,10 @@ button:hover {
 
 .buttons > button:focus {
 	outline: none;
+}
+
+.buttons > button:hover {
+	background-color: #F5F5F5;
 }
 
 .check {
