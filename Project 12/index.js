@@ -1,4 +1,4 @@
-todoElements = [];
+const todoElements = new Set();
 
 class TodoElement {
 	constructor(template) {
@@ -33,7 +33,7 @@ class TodoElement {
 	}
 
 	remove() {
-		todoElements = todoElements.filter(el => el == this);
+		todoElements.delete(this);
 		this.nameInput.removeEventListener('focusout', this.boundInputListenerCallback);
 		this.checkButton.removeEventListener('click', this.boundCheckButtonListenerCallback);
 		this.editButton.removeEventListener('click', this.boundEditButtonListenerCallback);
@@ -64,7 +64,7 @@ class Page {
 		}
 		const todoElement = new TodoElement(page.template.content.cloneNode(true));
 		todoElement.updateName(this.input.value);
-		todoElements.push(todoElement);
+		todoElements.add(todoElement);
 		this.addTodoElement(todoElement.domElement);
 		this.clearInput();
 	}
@@ -78,7 +78,7 @@ class Page {
 	}
 
 	isDuplicate(name) {
-		return todoElements.some(el => el.getName() == name);
+		return [...todoElements].some(el => el.getName() === name);
 	}
 
 	clearItems() {
