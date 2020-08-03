@@ -76,7 +76,7 @@ class Page {
 		if (this.isDuplicate(this.input.value)) {
 			return;
 		}
-		const todoElement = new TodoElement(page.template.content.cloneNode(true));
+		const todoElement = new TodoElement(this.template.content.cloneNode(true));
 		todoElement.updateName(this.input.value);
 		todoElements.add(todoElement);
 		this.addTodoElement(todoElement.domElement);
