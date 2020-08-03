@@ -24,15 +24,12 @@ class TodoElement {
 		this.removeButton = template.querySelector('.remove');
 		this.domElement = template.querySelector('.todo-el');
 
-		this.boundInputListenerCallback = this.disableInput.bind(this);
-		this.boundCheckButtonListenerCallback = this.check.bind(this);
-		this.boundEditButtonListenerCallback = this.edit.bind(this);
-		this.boundRemoveButtonListenerCallback = this.remove.bind(this);
-
-		this.listeners = [new ElementListener(this.nameInput, 'focusout', this.boundInputListenerCallback),
-						  new ElementListener(this.checkButton, 'click', this.boundCheckButtonListenerCallback),
-						  new ElementListener(this.editButton, 'click', this.boundEditButtonListenerCallback),
-						  new ElementListener(this.removeButton, 'click', this.boundRemoveButtonListenerCallback)];
+		this.listeners = [
+			new ElementListener(this.nameInput, 'focusout', this.disableInput.bind(this)),
+      		new ElementListener(this.checkButton, 'click', this.check.bind(this)),
+		    new ElementListener(this.editButton, 'click', this.edit.bind(this)),
+		    new ElementListener(this.removeButton, 'click', this.remove.bind(this)
+    	];
 		this.listeners.forEach(el => el.listen());
 	}
 
