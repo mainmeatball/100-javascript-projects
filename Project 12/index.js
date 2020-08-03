@@ -1,5 +1,21 @@
 const todoElements = new Set();
 
+class ElementListener {
+	constructor(field, name, boundCallback) {
+		this.field = field;
+		this.name = name;
+		this.boundCallback = boundCallback;
+	}
+
+	listen() {
+		this.field.addEventListener(this.name, this.boundCallback);
+	}
+
+	removeListener() {
+		this.field.removeEventListener(this.name, this.boundCallback);
+	}
+}
+
 class TodoElement {
 	constructor(template) {
 		this.nameInput = template.querySelector('.todo-el-name');
@@ -13,10 +29,11 @@ class TodoElement {
 		this.boundEditButtonListenerCallback = this.edit.bind(this);
 		this.boundRemoveButtonListenerCallback = this.remove.bind(this);
 
-		this.nameInput.addEventListener('focusout', this.boundInputListenerCallback);
-		this.checkButton.addEventListener('click', this.boundCheckButtonListenerCallback);
-		this.editButton.addEventListener('click', this.boundEditButtonListenerCallback);
-		this.removeButton.addEventListener('click', this.boundRemoveButtonListenerCallback);
+		this.listeners = [new ElementListener(this.nameInput, 'focusout', this.boundInputListenerCallback),
+						  new ElementListener(this.checkButton, 'click', this.boundCheckButtonListenerCallback),
+						  new ElementListener(this.editButton, 'click', this.boundEditButtonListenerCallback),
+						  new ElementListener(this.removeButton, 'click', this.boundRemoveButtonListenerCallback)];
+		this.listeners.forEach(el => el.listen());
 	}
 
 	disableInput() {
@@ -34,10 +51,7 @@ class TodoElement {
 
 	remove() {
 		todoElements.delete(this);
-		this.nameInput.removeEventListener('focusout', this.boundInputListenerCallback);
-		this.checkButton.removeEventListener('click', this.boundCheckButtonListenerCallback);
-		this.editButton.removeEventListener('click', this.boundEditButtonListenerCallback);
-		this.removeButton.removeEventListener('click', this.boundRemoveButtonListenerCallback);
+		this.listeners.forEach(el => el.removeListener());
 		this.domElement.remove();
 	}
 
