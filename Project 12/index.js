@@ -1,30 +1,52 @@
+todoElementMap = {};
+
 class TodoElement {
 	constructor(template) {
-		this.node = template;
 		this.nameInput = template.querySelector('.todo-el-name');
 		this.checkButton = template.querySelector('.check');
 		this.editButton = template.querySelector('.edit');
 		this.removeButton = template.querySelector('.remove');
 		this.domElement = template.querySelector('.todo-el');
 
-		this.nameInput.addEventListener("focusout", () => {
-			this.nameInput.readOnly = true;
-		});
+		this.boundInputListenerCallback = this.disableInput.bind(this);
+		this.boundCheckButtonListenerCallback = this.check.bind(this);
+		this.boundEditButtonListenerCallback = this.edit.bind(this);
+		this.boundRemoveButtonListenerCallback = this.remove.bind(this);
 
-		this.checkButton.addEventListener('click', () => this.nameInput.classList.toggle('checked'));
-		
-		this.editButton.addEventListener('click', () => {
-			this.nameInput.readOnly = false;
-			this.nameInput.focus();
-		});
+		this.nameInput.addEventListener('focusout', this.boundInputListenerCallback);
+		this.checkButton.addEventListener('click', this.boundCheckButtonListenerCallback);
+		this.editButton.addEventListener('click', this.boundEditButtonListenerCallback);
+		this.removeButton.addEventListener('click', this.boundRemoveButtonListenerCallback);
+	}
 
-		this.removeButton.addEventListener('click', () => {
-			this.domElement.remove();
-		});
+	disableInput() {
+		this.nameInput.readOnly = true;
+	}
+
+	check() {
+		this.nameInput.classList.toggle('checked');
+	}
+
+	edit() {
+		this.nameInput.readOnly = false;
+		this.nameInput.focus();
+	}
+
+	remove() {
+		delete todoElementMap[this.getName()];
+		this.nameInput.removeEventListener('focusout', this.boundInputListenerCallback);
+		this.checkButton.removeEventListener('click', this.boundCheckButtonListenerCallback);
+		this.editButton.removeEventListener('click', this.boundEditButtonListenerCallback);
+		this.removeButton.removeEventListener('click', this.boundRemoveButtonListenerCallback);
+		this.domElement.remove();
 	}
 
 	updateName(name) {
 		this.nameInput.value = name;
+	}
+
+	getName() {
+		return this.nameInput.value;
 	}
 }
 
@@ -40,19 +62,15 @@ class Page {
 	}
 
 	addTodoElement(todoElement) {
-		this.todoList.appendChild(todoElement.domElement);
+		this.todoList.appendChild(todoElement);
 	}
 
 	isDuplicate(name) {
-		return Array.from(this.todoList.querySelectorAll('.todo-el')).map(el => el.value).includes(name);
-	}
-
-	removeTodoElement(name) {
-		this.todoElementMap[name].remove();
+		return name in todoElementMap;
 	}
 
 	clearTodoList() {
-		Array.from(this.todoList.querySelectorAll('.todo-el')).forEach(el => el.remove());
+		Object.values(todoElementMap).forEach(el => el.remove());
 	}
 }
 
@@ -67,7 +85,8 @@ function addItem(event) {
 	}
 	const todoElement = new TodoElement(page.template.content.cloneNode(true));
 	todoElement.updateName(input.value);
-	page.addTodoElement(todoElement);
+	page.addTodoElement(todoElement.domElement);
+	todoElementMap[todoElement.getName()] = todoElement;
 	page.clearInput();
 }
 
