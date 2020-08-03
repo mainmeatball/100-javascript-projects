@@ -7,7 +7,7 @@
 <body>
 	<div id="wrapper" class="wrapper">
 		<h1 class="header">To Do List</h1>
-		<form action="#" onsubmit="addItem(event)">
+		<form action="#" onsubmit="page.addItem(event)">
 			<input id="input" class="inputField" required>
 			<button type="submit" class="button">New Item</button>
 		</form>
@@ -23,7 +23,7 @@
 				</div>
 			</template>
 		</div>
-		<button class="button clear-all-items" onclick="clearItems()">Clear Items</button>
+		<button class="button clear-all-items" onclick="page.clearItems()">Clear Items</button>
 	</div>
 	<script src="index.js"></script>
 </body>

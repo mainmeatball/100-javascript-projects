@@ -57,6 +57,18 @@ class Page {
 		this.todoList = todoList;
 	}
 
+	addItem(event) {
+		event.preventDefault();
+		if (this.isDuplicate(this.input.value)) {
+			return;
+		}
+		const todoElement = new TodoElement(page.template.content.cloneNode(true));
+		todoElement.updateName(this.input.value);
+		todoElements.push(todoElement);
+		this.addTodoElement(todoElement.domElement);
+		this.clearInput();
+	}
+
 	clearInput() {
 		this.input.value = '';
 	}
@@ -69,7 +81,7 @@ class Page {
 		return todoElements.some(el => el.getName() == name);
 	}
 
-	clearTodoList() {
+	clearItems() {
 		todoElements.forEach(el => el.remove());
 	}
 }
@@ -77,19 +89,3 @@ class Page {
 const page = new Page(document.getElementById('input'),
 				 	  document.getElementById('todo-el-template'),
 					  document.getElementById('todo-list'));
-
-function addItem(event) {
-	event.preventDefault();
-	if (page.isDuplicate(input.value)) {
-		return;
-	}
-	const todoElement = new TodoElement(page.template.content.cloneNode(true));
-	todoElement.updateName(input.value);
-	page.addTodoElement(todoElement.domElement);
-	todoElements.push(todoElement);
-	page.clearInput();
-}
-
-function clearItems() {
-	page.clearTodoList();
-}
