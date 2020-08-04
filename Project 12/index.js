@@ -28,7 +28,7 @@ class TodoElement {
 			new ElementListener(this.nameInput, 'focusout', this.disableInput.bind(this)),
       		new ElementListener(this.checkButton, 'click', this.check.bind(this)),
 		    new ElementListener(this.editButton, 'click', this.edit.bind(this)),
-		    new ElementListener(this.removeButton, 'click', this.remove.bind(this)
+		    new ElementListener(this.removeButton, 'click', this.remove.bind(this))
     	];
 		this.listeners.forEach(el => el.listen());
 	}
