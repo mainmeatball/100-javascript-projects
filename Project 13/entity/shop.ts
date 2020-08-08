@@ -31,8 +31,8 @@ export class Shop {
 
     private totalPrice = 0;
     private totalItems = 0;
-    private items: ShoppingItem[] = [];
-    private shoppingWindowItemsContainer: HTMLDivElement;
+    private readonly items: ShoppingItem[] = [];
+    private readonly shoppingWindowItemsContainer: HTMLDivElement;
 
     constructor(private quantity: HTMLParagraphElement,
                 private totals: HTMLParagraphElement[],

@@ -2,7 +2,7 @@ import {ElementListener} from "./element-listener";
 import {Shop} from "./shop";
 
 export class ShoppingItem {
-    public listeners: ElementListener[];
+    public readonly listeners: ElementListener[];
 
     public static of(element: Element, shop: Shop): ShoppingItem {
         return new ShoppingItem(
