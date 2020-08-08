@@ -1,6 +1,6 @@
 export class ShopValues {
-    constructor(private quantity: HTMLParagraphElement,
-                private totals: HTMLParagraphElement[],
+    constructor(private quantity: HTMLElement,
+                private totals: HTMLElement[],
                 private totalPrice = 0,
                 private totalItems = 0) {}
 

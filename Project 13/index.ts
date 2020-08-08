@@ -4,8 +4,8 @@ import {Page} from "./entity/page";
 import {ShopValues} from "./entity/shop-values";
 
 const shopValues = new ShopValues(
-    <HTMLParagraphElement>document.getElementById('quantity'),
-    <HTMLParagraphElement[]>Array.from(document.getElementsByClassName('amount'))
+    <HTMLElement>document.getElementById('quantity'),
+    <HTMLElement[]>Array.from(document.getElementsByClassName('amount'))
 )
 
 const shop = new Shop(

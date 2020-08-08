@@ -7,12 +7,12 @@
 </head>
 <body onload="app.page.setCards()">
 	<div class="header">
-		<div id="cart-preview" class="cart-preview" onclick="app.page.toggleShoppingList()">
+		<button id="cart-preview" class="cart-preview" onclick="app.page.toggleShoppingList()">
 			<i class="fa fa-shopping-cart fa-lg"></i>
-			<p id="quantity" class="quantity">0</p>
-			<p>Items - $</p>
-			<p class="amount">0</p>
-		</div>
+			<span id="quantity" class="quantity">0</span>
+			<span>Items - $</span>
+			<span class="amount">0</span>
+		</button>
 		<div id="shopping-window" class="shopping-window">
 			<div id="items" class="items">
 				<template id="cart-item-template">

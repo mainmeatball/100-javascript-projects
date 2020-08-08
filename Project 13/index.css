@@ -27,7 +27,7 @@ body {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	margin: 20px 20px 20px 0;
+	margin: 25px 20px 25px 0;
 	cursor: pointer;
 	transition: 0.2s ease-in-out;
 }
@@ -61,7 +61,6 @@ body {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-
 }
 
 .flex-grid {
@@ -132,7 +131,7 @@ body {
 	width: 300px;
 	background-color: rgba(117, 117, 94, 0.95);
 	right: 0;
-	top: 96px;
+	top: 94px;
 	z-index: 1;
 	transform: translateX(320px);
 	transition: transform 2s ease-in-out;
