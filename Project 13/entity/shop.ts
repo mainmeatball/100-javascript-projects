@@ -1,25 +1,26 @@
 import {Vehicle} from "./vehicle";
 import {ShoppingItem} from "./shopping-item";
+import {ShopValues} from "./shop-values";
 
 export class Shop {
     public static cars: Vehicle[] = [
-        new Vehicle('../resources/vehicles/car1.jpg', 'Ferrari', '500.000$'),
-        new Vehicle('../resources/vehicles/car2.jpg', 'Lamborghini', '499.000$')
+        new Vehicle('../resources/vehicles/car1.jpg', 'Ferrari', 500_000),
+        new Vehicle('../resources/vehicles/car2.jpg', 'Lamborghini', 499_000)
     ];
 
     public static bikes: Vehicle[] = [
-        new Vehicle('../resources/vehicles/bike1.jpg', 'Kawasaki', '100.000$'),
-        new Vehicle('../resources/vehicles/bike2.jpg', 'Samurai', '99.000$')
+        new Vehicle('../resources/vehicles/bike1.jpg', 'Kawasaki', 100_000),
+        new Vehicle('../resources/vehicles/bike2.jpg', 'Samurai', 99_000)
     ];
 
     public static bicycles: Vehicle[] = [
-        new Vehicle('../resources/vehicles/bicycle1.jpg', 'Gucci', '5.000$'),
-        new Vehicle('../resources/vehicles/bicycle2.jpg', 'Tesla', '10.000$')
+        new Vehicle('../resources/vehicles/bicycle1.jpg', 'Gucci', 5_000),
+        new Vehicle('../resources/vehicles/bicycle2.jpg', 'Tesla', 10_000)
     ];
 
     public static planes: Vehicle[] = [
-        new Vehicle('../resources/vehicles/plane1.jpg', 'Boeing', '1.000.000$'),
-        new Vehicle('../resources/vehicles/plane2.jpg', 'S7', '900.000$')
+        new Vehicle('../resources/vehicles/plane1.jpg', 'Boeing', 1_000_000),
+        new Vehicle('../resources/vehicles/plane2.jpg', 'S7', 900_000)
     ];
 
     public static allVehicles: Vehicle[] = [
@@ -29,66 +30,33 @@ export class Shop {
         ...Shop.planes
     ];
 
-    private totalPrice = 0;
-    private totalItems = 0;
     private readonly items: ShoppingItem[] = [];
     private readonly shoppingWindowItemsContainer = <HTMLDivElement>this.shoppingWindow.querySelector('#items');
 
-    constructor(private quantity: HTMLParagraphElement,
-                private totals: HTMLParagraphElement[],
-                public shoppingWindow: HTMLDivElement,
-                public cartItemTemplate: HTMLTemplateElement) {}
+    constructor(public shoppingWindow: HTMLDivElement,
+                public cartItemTemplate: HTMLTemplateElement,
+                public shopValues: ShopValues) {}
 
     public addVehicleToCart(item: Vehicle): void {
-        this.incrementQuantity();
-        this.addTotal(+(item.price.replace(/[.$]/g, '')));
+        this.shopValues.increaseValues(item.price);
         this.addShoppingWindowItem(item);
-    }
-
-    public decrementQuantity(): void {
-        this.quantity.textContent = '' + --this.totalItems;
-    }
-
-    public subtractTotal(price: number): void {
-        this.totalPrice -= price;
-        this.totals.forEach(total => total.textContent = '' + this.totalPrice);
     }
 
     public clearAllItems(): void {
         this.items.forEach(item => item.removeItem());
-        this.nullifyQuantity();
-        this.nullifyTotal();
+        this.shopValues.nullifyValues();
     }
 
     public toggleShoppingList() {
         this.shoppingWindow.classList.toggle('move-x');
     }
 
-    private incrementQuantity(): void {
-        this.quantity.textContent = '' + ++this.totalItems;
-    }
-
-    private addTotal(price: number): void {
-        this.totalPrice += price;
-        this.totals.forEach(total => total.textContent = '' + this.totalPrice);
-    }
-
-    private nullifyTotal(): void {
-        this.totalPrice = 0;
-        this.totals.forEach(total => total.textContent = '' + this.totalPrice);
-    }
-
-    private nullifyQuantity(): void {
-        this.totalItems = 0;
-        this.quantity.textContent = '0';
-    }
-
     private addShoppingWindowItem(item: Vehicle): void {
         const newItem = <Element>this.cartItemTemplate.content.cloneNode(true);
-        const shoppingItem = ShoppingItem.of(newItem, this);
+        const shoppingItem = ShoppingItem.of(newItem, this.shopValues);
         shoppingItem.image.src = item.img;
         shoppingItem.name.textContent = item.name;
-        shoppingItem.price.textContent = item.price;
+        shoppingItem.price.textContent = ShopValues.stringifyPrice(item.price);
         this.items.push(shoppingItem);
         this.shoppingWindowItemsContainer.appendChild(newItem);
     }

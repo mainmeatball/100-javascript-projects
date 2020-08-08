@@ -1,12 +1,17 @@
 import {Grid} from "./entity/grid";
 import {Shop} from "./entity/shop";
 import {Page} from "./entity/page";
+import {ShopValues} from "./entity/shop-values";
+
+const shopValues = new ShopValues(
+    <HTMLParagraphElement>document.getElementById('quantity'),
+    <HTMLParagraphElement[]>Array.from(document.getElementsByClassName('amount'))
+)
 
 const shop = new Shop(
-    <HTMLParagraphElement>document.getElementById('quantity'),
-    <HTMLParagraphElement[]>Array.from(document.getElementsByClassName('amount')),
     <HTMLDivElement>document.getElementById('shopping-window'),
-    <HTMLTemplateElement>document.getElementById('cart-item-template')
+    <HTMLTemplateElement>document.getElementById('cart-item-template'),
+    shopValues
 );
 
 const grid = new Grid(
