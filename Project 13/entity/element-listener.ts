@@ -3,11 +3,11 @@ export class ElementListener {
                 private name: string,
                 private boundCallback: () => void) {}
 
-    public listen() {
+    public listen(): void {
         this.field.addEventListener(this.name, this.boundCallback);
     }
 
-    public removeListener() {
+    public removeListener(): void {
         this.field.removeEventListener(this.name, this.boundCallback);
     }
 }

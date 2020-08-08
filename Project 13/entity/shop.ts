@@ -41,41 +41,41 @@ export class Shop {
         this.shoppingWindowItemsContainer = <HTMLDivElement>shoppingWindow.querySelector('#items');
     }
 
-    public addVehicleToCart(item: Vehicle) {
+    public addVehicleToCart(item: Vehicle): void {
         this.incrementQuantity();
         this.addTotal(+(item.price.replace(/[.$]/g, '')));
         this.addShoppingWindowItem(item);
     }
 
-    private incrementQuantity() {
+    private incrementQuantity(): void {
         this.quantity.textContent = '' + ++this.totalItems;
     }
 
-    decrementQuantity() {
+    decrementQuantity(): void {
         this.quantity.textContent = '' + --this.totalItems;
     }
 
-    private addTotal(price: number) {
+    private addTotal(price: number): void {
         this.totalPrice += price;
         this.totals.forEach(total => total.textContent = '' + this.totalPrice);
     }
 
-    subtractTotal(price: number) {
+    subtractTotal(price: number): void {
         this.totalPrice -= price;
         this.totals.forEach(total => total.textContent = '' + this.totalPrice);
     }
 
-    private nullifyTotal() {
+    private nullifyTotal(): void {
         this.totalPrice = 0;
         this.totals.forEach(total => total.textContent = '' + this.totalPrice);
     }
 
-    private nullifyQuantity() {
+    private nullifyQuantity(): void {
         this.totalItems = 0;
         this.quantity.textContent = '0';
     }
 
-    private addShoppingWindowItem(item: Vehicle) {
+    private addShoppingWindowItem(item: Vehicle): void {
         const newItem = <Element>this.cartItemTemplate.content.cloneNode(true);
         const shoppingItem = ShoppingItem.of(newItem, this);
         shoppingItem.image.src = item.img;
@@ -85,7 +85,7 @@ export class Shop {
         this.shoppingWindowItemsContainer.appendChild(newItem);
     }
 
-    clearAllItems() {
+    clearAllItems(): void {
         this.items.forEach(item => item.removeItem());
         this.nullifyQuantity();
         this.nullifyTotal();

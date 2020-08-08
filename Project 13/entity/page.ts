@@ -27,11 +27,11 @@ export class Page {
             .forEach(card => this.grid.panel.appendChild(card));
     }
 
-    toggleShoppingList() {
+    toggleShoppingList(): void {
         this.shop.shoppingWindow.classList.toggle('move-x');
     }
 
-    clearShoppingCart() {
+    clearShoppingCart(): void {
         this.shop.clearAllItems();
     }
 }
