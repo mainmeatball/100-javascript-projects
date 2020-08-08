@@ -24,30 +24,30 @@ export class ShopValues {
     }
 
     public static stringifyPrice(price: number): string {
-        return String(price).split(/(?=(?:...)*$)/).join('.') + '$';
+        return `${price}`.split(/(?=(?:...)*$)/).join('.') + '$';
     }
 
     private incrementQuantity(): void {
-        this.quantity.textContent = '' + ++this.totalItems;
+        this.quantity.textContent = `${++this.totalItems}`;
     }
 
     private addTotal(price: number): void {
         this.totalPrice += price;
-        this.totals.forEach(total => total.textContent = '' + this.totalPrice);
+        this.totals.forEach(total => total.textContent = `${this.totalPrice}`);
     }
 
     private decrementQuantity(): void {
-        this.quantity.textContent = '' + --this.totalItems;
+        this.quantity.textContent = `${--this.totalItems}`;
     }
 
     private subtractTotal(price: number): void {
         this.totalPrice -= price;
-        this.totals.forEach(total => total.textContent = '' + this.totalPrice);
+        this.totals.forEach(total => total.textContent = `${this.totalPrice}`);
     }
 
     private nullifyTotal(): void {
         this.totalPrice = 0;
-        this.totals.forEach(total => total.textContent = '' + this.totalPrice);
+        this.totals.forEach(total => total.textContent = `${this.totalPrice}`);
     }
 
     private nullifyQuantity(): void {
