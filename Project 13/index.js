@@ -147,7 +147,7 @@ var app = (function (exports) {
         }
         setCards() {
             Shop.allVehicles
-                .map(vehicle => {
+                .map((vehicle) => {
                 const clone = this.grid.frameTemplate.content.cloneNode(true);
                 const card = new Card(clone.querySelector('.frame-image'), clone.querySelector('.name'), clone.querySelector('.price'), clone.querySelector('.shop-icon'));
                 card.img.src = vehicle.img;

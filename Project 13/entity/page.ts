@@ -1,6 +1,7 @@
 import {Shop} from "./shop";
 import {Grid} from "./grid";
 import {Card} from "./card";
+import {Vehicle} from "./vehicle";
 
 export class Page {
     constructor(private shop: Shop,
@@ -8,7 +9,7 @@ export class Page {
 
     setCards(): void {
         Shop.allVehicles
-            .map(vehicle => {
+            .map((vehicle: Vehicle) => {
                 const clone = <Element>this.grid.frameTemplate.content.cloneNode(true);
                 const card = new Card(
                     <HTMLImageElement>clone.querySelector('.frame-image'),
