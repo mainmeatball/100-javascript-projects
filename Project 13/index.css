@@ -198,7 +198,7 @@ body {
 }
 
 .fa-trash-o {
-	transition: color 0.3s linear;
+	transition: color 0.3s ease;
 }
 
 .remove:hover > i {
