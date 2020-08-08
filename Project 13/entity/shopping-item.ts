@@ -1,5 +1,6 @@
 import {ElementListener} from "./element-listener";
 import {ShopValues} from "./shop-values";
+import {PriceUtils} from "./price-utils";
 
 export class ShoppingItem {
     public readonly listeners: ElementListener[];
@@ -30,6 +31,6 @@ export class ShoppingItem {
     public removeItem(): void {
         this.listeners.forEach(el => el.removeListener());
         this.domElement.remove();
-        this.shopValues.decreaseValues(ShopValues.numberifyPrice(this.price.textContent!))
+        this.shopValues.decreaseValues(PriceUtils.numberifyPrice(this.price.textContent!))
     }
 }

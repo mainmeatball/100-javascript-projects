@@ -2,7 +2,7 @@ import {Shop} from "./shop";
 import {Grid} from "./grid";
 import {Card} from "./card";
 import {Vehicle} from "./vehicle";
-import {ShopValues} from "./shop-values";
+import {PriceUtils} from "./price-utils";
 
 export class Page {
     public constructor(private shop: Shop,
@@ -20,7 +20,7 @@ export class Page {
                 );
                 card.img.src = vehicle.img;
                 card.name.textContent = vehicle.name;
-                card.price.textContent = ShopValues.stringifyPrice(vehicle.price);
+                card.price.textContent = PriceUtils.stringifyPrice(vehicle.price);
                 card.shopIcon.addEventListener('click', () => {
                     this.shop.addVehicleToCart(vehicle);
                 });

@@ -1,6 +1,7 @@
 import {Vehicle} from "./vehicle";
 import {ShoppingItem} from "./shopping-item";
 import {ShopValues} from "./shop-values";
+import {PriceUtils} from "./price-utils";
 
 export class Shop {
     public static cars: Vehicle[] = [
@@ -56,7 +57,7 @@ export class Shop {
         const shoppingItem = ShoppingItem.of(newItem, this.shopValues);
         shoppingItem.image.src = item.img;
         shoppingItem.name.textContent = item.name;
-        shoppingItem.price.textContent = ShopValues.stringifyPrice(item.price);
+        shoppingItem.price.textContent = PriceUtils.stringifyPrice(item.price);
         this.items.push(shoppingItem);
         this.shoppingWindowItemsContainer.appendChild(newItem);
     }

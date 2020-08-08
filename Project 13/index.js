@@ -30,52 +30,12 @@ var app = (function (exports) {
         }
     }
 
-    class ShopValues {
-        constructor(quantity, totals, totalPrice = 0, totalItems = 0) {
-            this.quantity = quantity;
-            this.totals = totals;
-            this.totalPrice = totalPrice;
-            this.totalItems = totalItems;
-        }
-        decreaseValues(price) {
-            this.decrementQuantity();
-            this.subtractTotal(price);
-        }
-        increaseValues(price) {
-            this.incrementQuantity();
-            this.addTotal(price);
-        }
-        nullifyValues() {
-            this.nullifyTotal();
-            this.nullifyQuantity();
-        }
+    class PriceUtils {
         static numberifyPrice(price) {
             return +price.replace(/[.$]/g, '');
         }
         static stringifyPrice(price) {
-            return String(price).split(/(?=(?:...)*$)/).join('.') + '$';
-        }
-        incrementQuantity() {
-            this.quantity.textContent = '' + ++this.totalItems;
-        }
-        addTotal(price) {
-            this.totalPrice += price;
-            this.totals.forEach(total => total.textContent = '' + this.totalPrice);
-        }
-        decrementQuantity() {
-            this.quantity.textContent = '' + --this.totalItems;
-        }
-        subtractTotal(price) {
-            this.totalPrice -= price;
-            this.totals.forEach(total => total.textContent = '' + this.totalPrice);
-        }
-        nullifyTotal() {
-            this.totalPrice = 0;
-            this.totals.forEach(total => total.textContent = '' + this.totalPrice);
-        }
-        nullifyQuantity() {
-            this.totalItems = 0;
-            this.quantity.textContent = '0';
+            return `${price}`.split(/(?=(?:...)*$)/).join('.') + '$';
         }
     }
 
@@ -99,7 +59,7 @@ var app = (function (exports) {
         removeItem() {
             this.listeners.forEach(el => el.removeListener());
             this.domElement.remove();
-            this.shopValues.decreaseValues(ShopValues.numberifyPrice(this.price.textContent));
+            this.shopValues.decreaseValues(PriceUtils.numberifyPrice(this.price.textContent));
         }
     }
 
@@ -127,7 +87,7 @@ var app = (function (exports) {
             const shoppingItem = ShoppingItem.of(newItem, this.shopValues);
             shoppingItem.image.src = item.img;
             shoppingItem.name.textContent = item.name;
-            shoppingItem.price.textContent = ShopValues.stringifyPrice(item.price);
+            shoppingItem.price.textContent = PriceUtils.stringifyPrice(item.price);
             this.items.push(shoppingItem);
             this.shoppingWindowItemsContainer.appendChild(newItem);
         }
@@ -176,7 +136,7 @@ var app = (function (exports) {
                 const card = new Card(clone.querySelector('.frame-image'), clone.querySelector('.name'), clone.querySelector('.price'), clone.querySelector('.shop-icon'));
                 card.img.src = vehicle.img;
                 card.name.textContent = vehicle.name;
-                card.price.textContent = ShopValues.stringifyPrice(vehicle.price);
+                card.price.textContent = PriceUtils.stringifyPrice(vehicle.price);
                 card.shopIcon.addEventListener('click', () => {
                     this.shop.addVehicleToCart(vehicle);
                 });
@@ -189,6 +149,49 @@ var app = (function (exports) {
         }
         clearShoppingCart() {
             this.shop.clearAllItems();
+        }
+    }
+
+    class ShopValues {
+        constructor(quantity, totals, totalPrice = 0, totalItems = 0) {
+            this.quantity = quantity;
+            this.totals = totals;
+            this.totalPrice = totalPrice;
+            this.totalItems = totalItems;
+        }
+        decreaseValues(price) {
+            this.decrementQuantity();
+            this.subtractTotal(price);
+        }
+        increaseValues(price) {
+            this.incrementQuantity();
+            this.addTotal(price);
+        }
+        nullifyValues() {
+            this.nullifyTotal();
+            this.nullifyQuantity();
+        }
+        incrementQuantity() {
+            this.quantity.textContent = `${++this.totalItems}`;
+        }
+        addTotal(price) {
+            this.totalPrice += price;
+            this.totals.forEach(total => total.textContent = `${this.totalPrice}`);
+        }
+        decrementQuantity() {
+            this.quantity.textContent = `${--this.totalItems}`;
+        }
+        subtractTotal(price) {
+            this.totalPrice -= price;
+            this.totals.forEach(total => total.textContent = `${this.totalPrice}`);
+        }
+        nullifyTotal() {
+            this.totalPrice = 0;
+            this.totals.forEach(total => total.textContent = `${this.totalPrice}`);
+        }
+        nullifyQuantity() {
+            this.totalItems = 0;
+            this.quantity.textContent = '0';
         }
     }
 
