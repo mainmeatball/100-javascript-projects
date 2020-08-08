@@ -29,7 +29,7 @@ export class Page {
     }
 
     toggleShoppingList(): void {
-        this.shop.shoppingWindow.classList.toggle('move-x');
+        this.shop.toggleShoppingList();
     }
 
     clearShoppingCart(): void {

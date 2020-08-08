@@ -107,6 +107,9 @@ var app = (function (exports) {
             this.nullifyQuantity();
             this.nullifyTotal();
         }
+        toggleShoppingList() {
+            this.shoppingWindow.classList.toggle('move-x');
+        }
     }
     Shop.cars = [
         new Vehicle('../resources/vehicles/car1.jpg', 'Ferrari', '500.000$'),
@@ -161,7 +164,7 @@ var app = (function (exports) {
                 .forEach(card => this.grid.panel.appendChild(card));
         }
         toggleShoppingList() {
-            this.shop.shoppingWindow.classList.toggle('move-x');
+            this.shop.toggleShoppingList();
         }
         clearShoppingCart() {
             this.shop.clearAllItems();

@@ -90,4 +90,8 @@ export class Shop {
         this.nullifyQuantity();
         this.nullifyTotal();
     }
+
+    toggleShoppingList() {
+        this.shoppingWindow.classList.toggle('move-x');
+    }
 }
