@@ -4,10 +4,10 @@ import {Card} from "./card";
 import {Vehicle} from "./vehicle";
 
 export class Page {
-    constructor(private shop: Shop,
-                private grid: Grid) {}
+    public constructor(private shop: Shop,
+                       private grid: Grid) {}
 
-    setCards(): void {
+    public setCards(): void {
         Shop.allVehicles
             .map((vehicle: Vehicle) => {
                 const clone = <Element>this.grid.frameTemplate.content.cloneNode(true);
@@ -28,11 +28,11 @@ export class Page {
             .forEach(card => this.grid.panel.appendChild(card));
     }
 
-    toggleShoppingList(): void {
+    public toggleShoppingList(): void {
         this.shop.toggleShoppingList();
     }
 
-    clearShoppingCart(): void {
+    public clearShoppingCart(): void {
         this.shop.clearAllItems();
     }
 }

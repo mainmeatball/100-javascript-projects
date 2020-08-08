@@ -64,25 +64,33 @@ var app = (function (exports) {
             this.totalPrice = 0;
             this.totalItems = 0;
             this.items = [];
-            this.shoppingWindowItemsContainer = shoppingWindow.querySelector('#items');
+            this.shoppingWindowItemsContainer = this.shoppingWindow.querySelector('#items');
         }
         addVehicleToCart(item) {
             this.incrementQuantity();
             this.addTotal(+(item.price.replace(/[.$]/g, '')));
             this.addShoppingWindowItem(item);
         }
-        incrementQuantity() {
-            this.quantity.textContent = '' + ++this.totalItems;
-        }
         decrementQuantity() {
             this.quantity.textContent = '' + --this.totalItems;
         }
-        addTotal(price) {
-            this.totalPrice += price;
-            this.totals.forEach(total => total.textContent = '' + this.totalPrice);
-        }
         subtractTotal(price) {
             this.totalPrice -= price;
+            this.totals.forEach(total => total.textContent = '' + this.totalPrice);
+        }
+        clearAllItems() {
+            this.items.forEach(item => item.removeItem());
+            this.nullifyQuantity();
+            this.nullifyTotal();
+        }
+        toggleShoppingList() {
+            this.shoppingWindow.classList.toggle('move-x');
+        }
+        incrementQuantity() {
+            this.quantity.textContent = '' + ++this.totalItems;
+        }
+        addTotal(price) {
+            this.totalPrice += price;
             this.totals.forEach(total => total.textContent = '' + this.totalPrice);
         }
         nullifyTotal() {
@@ -101,14 +109,6 @@ var app = (function (exports) {
             shoppingItem.price.textContent = item.price;
             this.items.push(shoppingItem);
             this.shoppingWindowItemsContainer.appendChild(newItem);
-        }
-        clearAllItems() {
-            this.items.forEach(item => item.removeItem());
-            this.nullifyQuantity();
-            this.nullifyTotal();
-        }
-        toggleShoppingList() {
-            this.shoppingWindow.classList.toggle('move-x');
         }
     }
     Shop.cars = [

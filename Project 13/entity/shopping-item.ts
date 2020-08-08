@@ -27,7 +27,7 @@ export class ShoppingItem {
         this.listeners.forEach(el => el.listen());
     }
 
-    removeItem(): void {
+    public removeItem(): void {
         this.listeners.forEach(el => el.removeListener());
         this.domElement.remove();
         this.shop.subtractTotal(+(this.price.textContent?.replace(/[.$]/g, '') || ''))

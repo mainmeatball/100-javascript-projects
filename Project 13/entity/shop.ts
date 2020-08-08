@@ -45,21 +45,31 @@ export class Shop {
         this.addShoppingWindowItem(item);
     }
 
+    public decrementQuantity(): void {
+        this.quantity.textContent = '' + --this.totalItems;
+    }
+
+    public subtractTotal(price: number): void {
+        this.totalPrice -= price;
+        this.totals.forEach(total => total.textContent = '' + this.totalPrice);
+    }
+
+    public clearAllItems(): void {
+        this.items.forEach(item => item.removeItem());
+        this.nullifyQuantity();
+        this.nullifyTotal();
+    }
+
+    public toggleShoppingList() {
+        this.shoppingWindow.classList.toggle('move-x');
+    }
+
     private incrementQuantity(): void {
         this.quantity.textContent = '' + ++this.totalItems;
     }
 
-    decrementQuantity(): void {
-        this.quantity.textContent = '' + --this.totalItems;
-    }
-
     private addTotal(price: number): void {
         this.totalPrice += price;
-        this.totals.forEach(total => total.textContent = '' + this.totalPrice);
-    }
-
-    subtractTotal(price: number): void {
-        this.totalPrice -= price;
         this.totals.forEach(total => total.textContent = '' + this.totalPrice);
     }
 
@@ -81,15 +91,5 @@ export class Shop {
         shoppingItem.price.textContent = item.price;
         this.items.push(shoppingItem);
         this.shoppingWindowItemsContainer.appendChild(newItem);
-    }
-
-    clearAllItems(): void {
-        this.items.forEach(item => item.removeItem());
-        this.nullifyQuantity();
-        this.nullifyTotal();
-    }
-
-    toggleShoppingList() {
-        this.shoppingWindow.classList.toggle('move-x');
     }
 }
