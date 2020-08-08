@@ -16,25 +16,20 @@ var app = (function (exports) {
         }
     }
 
-    var Project13;
-    (function (Project13) {
-        class ElementListener {
-            constructor(field, name, boundCallback) {
-                this.field = field;
-                this.name = name;
-                this.boundCallback = boundCallback;
-            }
-            listen() {
-                this.field.addEventListener(this.name, this.boundCallback);
-            }
-            removeListener() {
-                this.field.removeEventListener(this.name, this.boundCallback);
-            }
+    class ElementListener {
+        constructor(field, name, boundCallback) {
+            this.field = field;
+            this.name = name;
+            this.boundCallback = boundCallback;
         }
-        Project13.ElementListener = ElementListener;
-    })(Project13 || (Project13 = {}));
+        listen() {
+            this.field.addEventListener(this.name, this.boundCallback);
+        }
+        removeListener() {
+            this.field.removeEventListener(this.name, this.boundCallback);
+        }
+    }
 
-    var ElementListener = Project13.ElementListener;
     class ShoppingItem {
         constructor(shop, image, name, price, removeButton, domElement) {
             this.shop = shop;
@@ -115,20 +110,20 @@ var app = (function (exports) {
         }
     }
     Shop.cars = [
-        new Vehicle('resources/car1.jpg', 'Ferrari', '500.000$'),
-        new Vehicle('resources/car2.jpg', 'Lamborghini', '499.000$')
+        new Vehicle('../resources/vehicles/car1.jpg', 'Ferrari', '500.000$'),
+        new Vehicle('../resources/vehicles/car2.jpg', 'Lamborghini', '499.000$')
     ];
     Shop.bikes = [
-        new Vehicle('resources/bike1.jpg', 'Kawasaki', '100.000$'),
-        new Vehicle('resources/bike2.jpg', 'Samurai', '99.000$')
+        new Vehicle('../resources/vehicles/bike1.jpg', 'Kawasaki', '100.000$'),
+        new Vehicle('../resources/vehicles/bike2.jpg', 'Samurai', '99.000$')
     ];
     Shop.bicycles = [
-        new Vehicle('resources/bicycle1.jpg', 'Gucci', '5.000$'),
-        new Vehicle('resources/bicycle2.jpg', 'Tesla', '10.000$')
+        new Vehicle('../resources/vehicles/bicycle1.jpg', 'Gucci', '5.000$'),
+        new Vehicle('../resources/vehicles/bicycle2.jpg', 'Tesla', '10.000$')
     ];
     Shop.planes = [
-        new Vehicle('resources/plane1.jpg', 'Boeing', '1.000.000$'),
-        new Vehicle('resources/plane2.jpg', 'S7', '900.000$')
+        new Vehicle('../resources/vehicles/plane1.jpg', 'Boeing', '1.000.000$'),
+        new Vehicle('../resources/vehicles/plane2.jpg', 'S7', '900.000$')
     ];
     Shop.allVehicles = [
         ...Shop.cars,

@@ -1,5 +1,4 @@
-import {Project13} from "./element-listener";
-import ElementListener = Project13.ElementListener;
+import {ElementListener} from "./element-listener";
 import {Shop} from "./shop";
 
 export class ShoppingItem {
