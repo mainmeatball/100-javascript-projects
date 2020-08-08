@@ -56,16 +56,15 @@ var app = (function (exports) {
     }
 
     class Shop {
-        constructor(quantity, totals, cartPreview, shoppingWindow, cartItemTemplate) {
+        constructor(quantity, totals, shoppingWindow, cartItemTemplate) {
+            this.quantity = quantity;
+            this.totals = totals;
+            this.shoppingWindow = shoppingWindow;
+            this.cartItemTemplate = cartItemTemplate;
             this.totalPrice = 0;
             this.totalItems = 0;
             this.items = [];
-            this.quantity = quantity;
-            this.totals = totals;
-            this.cartPreview = cartPreview;
-            this.shoppingWindow = shoppingWindow;
             this.shoppingWindowItemsContainer = shoppingWindow.querySelector('#items');
-            this.cartItemTemplate = cartItemTemplate;
         }
         addVehicleToCart(item) {
             this.incrementQuantity();
@@ -169,7 +168,7 @@ var app = (function (exports) {
         }
     }
 
-    const shop = new Shop(document.getElementById('quantity'), Array.from(document.getElementsByClassName('amount')), document.getElementById('cart-preview'), document.getElementById('shopping-window'), document.getElementById('cart-item-template'));
+    const shop = new Shop(document.getElementById('quantity'), Array.from(document.getElementsByClassName('amount')), document.getElementById('shopping-window'), document.getElementById('cart-item-template'));
     const grid = new Grid(document.getElementById('flex-grid'), document.getElementById('frame-template'));
     const page = new Page(shop, grid);
 

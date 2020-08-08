@@ -5,7 +5,6 @@ import {Page} from "./entity/page";
 const shop: Shop = new Shop(
     <HTMLParagraphElement>document.getElementById('quantity'),
     <HTMLParagraphElement[]>Array.from(document.getElementsByClassName('amount')),
-    <HTMLDivElement>document.getElementById('cart-preview'),
     <HTMLDivElement>document.getElementById('shopping-window'),
     <HTMLTemplateElement>document.getElementById('cart-item-template')
 );

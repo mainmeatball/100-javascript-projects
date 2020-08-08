@@ -2,13 +2,7 @@ import {ElementListener} from "./element-listener";
 import {Shop} from "./shop";
 
 export class ShoppingItem {
-    shop: Shop;
-    image: HTMLImageElement;
-    name: HTMLParagraphElement;
-    price: HTMLParagraphElement;
-    removeButton: HTMLButtonElement;
-    domElement: HTMLDivElement;
-    listeners: ElementListener[];
+    public listeners: ElementListener[];
 
     public static of(element: Element, shop: Shop): ShoppingItem {
         return new ShoppingItem(
@@ -21,19 +15,12 @@ export class ShoppingItem {
         );
     };
 
-    private constructor(shop: Shop,
-                        image: HTMLImageElement,
-                        name: HTMLParagraphElement,
-                        price: HTMLParagraphElement,
-                        removeButton: HTMLButtonElement,
-                        domElement: HTMLDivElement) {
-        this.shop = shop;
-        this.image = image;
-        this.name = name;
-        this.price = price;
-        this.removeButton = removeButton;
-        this.domElement = domElement;
-
+    private constructor(public shop: Shop,
+                        public image: HTMLImageElement,
+                        public name: HTMLParagraphElement,
+                        public price: HTMLParagraphElement,
+                        public removeButton: HTMLButtonElement,
+                        public domElement: HTMLDivElement) {
         this.listeners = [
             new ElementListener(this.removeButton, 'click', this.removeItem.bind(this)),
         ];

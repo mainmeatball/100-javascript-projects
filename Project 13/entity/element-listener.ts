@@ -1,13 +1,7 @@
 export class ElementListener {
-    private field: HTMLElement;
-    private readonly name: string;
-    private readonly boundCallback: () => void;
-
-    constructor(field: HTMLElement, name: string, boundCallback: () => void) {
-        this.field = field;
-        this.name = name;
-        this.boundCallback = boundCallback;
-    }
+    constructor(private field: HTMLElement,
+                private name: string,
+                private boundCallback: () => void) {}
 
     public listen() {
         this.field.addEventListener(this.name, this.boundCallback);

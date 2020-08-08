@@ -3,13 +3,8 @@ import {Grid} from "./grid";
 import {Card} from "./card";
 
 export class Page {
-    private shop: Shop;
-    private grid: Grid;
-
-    constructor(shop: Shop, grid: Grid) {
-        this.shop = shop;
-        this.grid = grid;
-    }
+    constructor(private shop: Shop,
+                private grid: Grid) {}
 
     setCards(): void {
         Shop.allVehicles

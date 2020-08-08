@@ -32,24 +32,13 @@ export class Shop {
     private totalPrice = 0;
     private totalItems = 0;
     private items: ShoppingItem[] = [];
-    private quantity: HTMLParagraphElement;
-    private totals: HTMLParagraphElement[];
-    cartPreview: HTMLDivElement;
-    shoppingWindow: HTMLDivElement;
     private shoppingWindowItemsContainer: HTMLDivElement;
-    cartItemTemplate: HTMLTemplateElement;
 
-    constructor(quantity: HTMLParagraphElement,
-                totals: HTMLParagraphElement[],
-                cartPreview: HTMLDivElement,
-                shoppingWindow: HTMLDivElement,
-                cartItemTemplate: HTMLTemplateElement) {
-        this.quantity = quantity;
-        this.totals = totals;
-        this.cartPreview = cartPreview;
-        this.shoppingWindow = shoppingWindow;
+    constructor(private quantity: HTMLParagraphElement,
+                private totals: HTMLParagraphElement[],
+                public shoppingWindow: HTMLDivElement,
+                public cartItemTemplate: HTMLTemplateElement) {
         this.shoppingWindowItemsContainer = <HTMLDivElement>shoppingWindow.querySelector('#items');
-        this.cartItemTemplate = cartItemTemplate;
     }
 
     public addVehicleToCart(item: Vehicle) {
