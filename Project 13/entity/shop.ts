@@ -32,14 +32,12 @@ export class Shop {
     private totalPrice = 0;
     private totalItems = 0;
     private readonly items: ShoppingItem[] = [];
-    private readonly shoppingWindowItemsContainer: HTMLDivElement;
+    private readonly shoppingWindowItemsContainer = <HTMLDivElement>this.shoppingWindow.querySelector('#items');
 
     constructor(private quantity: HTMLParagraphElement,
                 private totals: HTMLParagraphElement[],
                 public shoppingWindow: HTMLDivElement,
-                public cartItemTemplate: HTMLTemplateElement) {
-        this.shoppingWindowItemsContainer = <HTMLDivElement>shoppingWindow.querySelector('#items');
-    }
+                public cartItemTemplate: HTMLTemplateElement) {}
 
     public addVehicleToCart(item: Vehicle): void {
         this.incrementQuantity();
