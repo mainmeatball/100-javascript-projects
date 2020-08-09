@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Grocery List</title>
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<div id="wrapper" class="wrapper">
+		<h1 class="header">Grocery List</h1>
+		<form action="#" onsubmit="app.addItem(); return false;">
+			<label for="input-field"></label>
+			<input id="input-field" class="input-field" placeholder="Enter Value ..." required>
+			<button type="submit" class="button">New Item</button>
+		</form>
+		<div id="grocery-list" class="grocery-list">
+			<!-- Place for grocery items rendering -->
+		</div>
+		<button class="button clear-all" onclick="app.clearItems()">Clear Items</button>
+	</div>
+
+	<!-- Grocery item template -->
+	<template id="grocery-item-template">
+		<div class="grocery-item">
+			<p class="grocery-item-name"></p>
+			<button class="grocery-item-remove-button"><i class="fas fa-trash"></i></button>
+		</div>
+	</template>
+
+	<script src="index.js"></script>
+</body>
+</html>
