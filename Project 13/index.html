@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Grocery Cart</title>
+	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+</head>
+<body onload="app.page.setCards()">
+	<div class="header">
+		<button id="cart-preview" class="cart-preview" onclick="app.page.toggleShoppingList()">
+			<i class="fa fa-shopping-cart fa-lg"></i>
+			<span id="quantity" class="quantity">0</span>
+			<span>Items - $</span>
+			<span class="amount">0</span>
+		</button>
+		<div id="shopping-window" class="shopping-window">
+			<div id="items" class="items">
+				<template id="cart-item-template">
+					<div class="cart-item">
+						<img class="cart-item-image" src="" alt="">
+						<div class="cart-item-data-col">
+							<p class="cart-item-name"></p>
+							<p class="cart-item-price"></p>
+						</div>
+						<button class="remove"><i class="fa fa-trash-o fa-2x"></i></button>
+					</div>
+				</template>
+			</div>
+			<div class="total-row">
+				<p>Total $</p>
+				<p class="amount">0</p>
+			</div>
+			<button id="clear-cart" class="clear-cart" onclick="app.page.clearShoppingCart()">Clear All</button>
+		</div>
+	</div>
+	<div class="top-wrapper">
+		<p class="logo">Some Store</p>
+		<div id="flex-grid" class="flex-grid"></div>
+	</div>
+	<template id="frame-template">
+		<div class="frame">
+			<div class="image-div">
+				<div class="shop-icon"><i class="fa fa-shopping-cart fa-2x"></i></div>
+				<img class="frame-image" src="" alt="">
+			</div>
+			<div id="title" class="title">
+				<p class="name"></p>
+				<p class="price"></p>
+			</div>
+		</div>
+	</template>
+	<script src="index.js"></script>
+</body>
+</html>
