@@ -19,10 +19,6 @@ export class GroceryService {
         this.render(...localStorageItems);
     }
 
-    public render(...items: GroceryItemComponent[]): void {
-        this.groceryList.append(...items.map(item => item.domElement));
-    }
-
     public add(name: string): void {
         const item = GroceryItemComponent.of(name);
         item.createBound(this.remove.bind(this));
@@ -37,6 +33,10 @@ export class GroceryService {
         itemsCopy.forEach((item: GroceryItemComponent) => {
             item.remove()
         });
+    }
+
+    private render(...items: GroceryItemComponent[]): void {
+        this.groceryList.append(...items.map(item => item.domElement));
     }
 
     private remove(removeItem: GroceryItemComponent): void {

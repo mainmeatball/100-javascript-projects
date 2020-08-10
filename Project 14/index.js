@@ -98,9 +98,6 @@ var app = (function (exports) {
             });
             this.render(...localStorageItems);
         }
-        render(...items) {
-            this.groceryList.append(...items.map(item => item.domElement));
-        }
         add(name) {
             const item = GroceryItemComponent.of(name);
             item.createBound(this.remove.bind(this));
@@ -114,6 +111,9 @@ var app = (function (exports) {
             itemsCopy.forEach((item) => {
                 item.remove();
             });
+        }
+        render(...items) {
+            this.groceryList.append(...items.map(item => item.domElement));
         }
         remove(removeItem) {
             this.groceryLocalStorage.remove(removeItem);
