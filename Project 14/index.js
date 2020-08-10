@@ -74,6 +74,9 @@ var app = (function (exports) {
         remove(item) {
             const groceryList = this.getNames();
             const itemIndex = groceryList.findIndex((name) => item.getName() === name);
+            if (itemIndex === -1) {
+                throw new Error(`Expected "${item.getName()}" to be present in local storage`);
+            }
             groceryList.splice(itemIndex, 1);
             localStorage.setItem(this.STORAGE_KEY, JSON.stringify(groceryList));
         }
