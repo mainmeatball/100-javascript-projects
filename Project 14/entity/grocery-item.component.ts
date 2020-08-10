@@ -5,7 +5,7 @@ import {Callback} from "../model/callback.type";
 
 export class GroceryItemComponent implements NameAware {
     private readonly boundRemoveButtonFn = this.remove.bind(this);
-    private boundLocalStorageFn: Callback<GroceryItemComponent> = () => true;
+    private boundCallbackFn: Callback<GroceryItemComponent> = () => true;
 
     public static of(name: string): GroceryItemComponent {
         const template = select(AppElement.GROCERY_ITEM_TEMPLATE).content.cloneNode(true) as HTMLElement;
@@ -29,7 +29,7 @@ export class GroceryItemComponent implements NameAware {
     public remove(): void {
         this.removeListener();
         this.domElement.remove();
-        this.boundLocalStorageFn(this);
+        this.boundCallbackFn(this);
     }
 
     public setName(name: string): GroceryItemComponent {
@@ -41,8 +41,8 @@ export class GroceryItemComponent implements NameAware {
         return this.name.textContent!;
     }
 
-    public bind(removeFromLocalStorageFn: Callback<GroceryItemComponent>): void {
-        this.boundLocalStorageFn = removeFromLocalStorageFn;
+    public createBound(callbackFn: Callback<GroceryItemComponent>): void {
+        this.boundCallbackFn = callbackFn;
     }
 
     private listen(): void {

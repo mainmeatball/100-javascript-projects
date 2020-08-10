@@ -12,7 +12,7 @@ export class GroceryService {
         const localStorageItems = this.groceryLocalStorage.getNames()
             .map((name: string) => {
                 const item = GroceryItemComponent.of(name);
-                item.bind(this.remove.bind(this));
+                item.createBound(this.remove.bind(this));
                 this.items.set(name, item);
                 return item;
             });
@@ -26,7 +26,7 @@ export class GroceryService {
     public add(name: string): void {
         const item = GroceryItemComponent.of(name);
         item.setName(name);
-        item.bind(this.remove.bind(this));
+        item.createBound(this.remove.bind(this));
         this.render(item);
         this.groceryLocalStorage.add(item);
         this.items.set(name, item);

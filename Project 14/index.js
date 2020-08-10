@@ -26,7 +26,7 @@ var app = (function (exports) {
             this.removeButton = removeButton;
             this.domElement = domElement;
             this.boundRemoveButtonFn = this.remove.bind(this);
-            this.boundLocalStorageFn = () => true;
+            this.boundCallbackFn = () => true;
             this.listen();
         }
         static of(name) {
@@ -39,7 +39,7 @@ var app = (function (exports) {
         remove() {
             this.removeListener();
             this.domElement.remove();
-            this.boundLocalStorageFn(this);
+            this.boundCallbackFn(this);
         }
         setName(name) {
             this.name.textContent = name;
@@ -48,8 +48,8 @@ var app = (function (exports) {
         getName() {
             return this.name.textContent;
         }
-        bind(removeFromLocalStorageFn) {
-            this.boundLocalStorageFn = removeFromLocalStorageFn;
+        createBound(callbackFn) {
+            this.boundCallbackFn = callbackFn;
         }
         listen() {
             this.removeButton.addEventListener('click', this.boundRemoveButtonFn);
@@ -92,7 +92,7 @@ var app = (function (exports) {
             const localStorageItems = this.groceryLocalStorage.getNames()
                 .map((name) => {
                 const item = GroceryItemComponent.of(name);
-                item.bind(this.remove.bind(this));
+                item.createBound(this.remove.bind(this));
                 this.items.set(name, item);
                 return item;
             });
@@ -104,7 +104,7 @@ var app = (function (exports) {
         add(name) {
             const item = GroceryItemComponent.of(name);
             item.setName(name);
-            item.bind(this.remove.bind(this));
+            item.createBound(this.remove.bind(this));
             this.render(item);
             this.groceryLocalStorage.add(item);
             this.items.set(name, item);
