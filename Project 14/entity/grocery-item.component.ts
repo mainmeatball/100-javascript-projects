@@ -15,7 +15,7 @@ export class GroceryItemComponent implements NameAware {
     private static ofTemplate(template: HTMLElement): GroceryItemComponent {
         return new GroceryItemComponent(
             select(AppElement.GROCERY_ITEM_NAME, template),
-            select(AppElement.GROCERY_ITEM_REMOVE_BUTTON, template) as HTMLButtonElement,
+            select(AppElement.GROCERY_ITEM_REMOVE_BUTTON, template),
             select(AppElement.GROCERY_ITEM, template)
         );
     }
