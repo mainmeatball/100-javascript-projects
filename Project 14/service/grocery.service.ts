@@ -6,33 +6,29 @@ import {select} from "../helper/select";
 export class GroceryService {
     private readonly groceryList = select(AppElement.GROCERY_LIST);
     private readonly items = new Map<string, GroceryItemComponent>();
-    private readonly localStorage = new GroceryStorage();
+    private readonly groceryLocalStorage = new GroceryStorage();
 
     public renderLocalStorageItems(): void {
-        const localStorageItems = this.localStorage.getGroceryListNames()
+        const localStorageItems = this.groceryLocalStorage.getNames()
             .map((name: string) => {
                 const item = GroceryItemComponent.of(name);
-                item.bind(this.removeItem.bind(this));
+                item.bind(this.remove.bind(this));
                 this.items.set(name, item);
                 return item;
             });
-        this.renderItems(...localStorageItems);
+        this.render(...localStorageItems);
     }
 
-    public renderItems(...items: GroceryItemComponent[]): void {
+    public render(...items: GroceryItemComponent[]): void {
         this.groceryList.append(...items.map(item => item.domElement));
     }
 
-    public renderItem(item: GroceryItemComponent): void {
-        this.groceryList.appendChild(item.domElement);
-    }
-
-    public addItem(name: string): void {
+    public add(name: string): void {
         const item = GroceryItemComponent.of(name);
         item.setName(name);
-        item.bind(this.removeItem.bind(this));
-        this.renderItem(item);
-        this.localStorage.addItem(item);
+        item.bind(this.remove.bind(this));
+        this.render(item);
+        this.groceryLocalStorage.add(item);
         this.items.set(name, item);
     }
 
@@ -44,8 +40,8 @@ export class GroceryService {
         return Array.from(this.items.values());
     }
 
-    private removeItem(item: GroceryItemComponent): void {
-        this.localStorage.removeItem(item);
+    private remove(item: GroceryItemComponent): void {
+        this.groceryLocalStorage.remove(item);
         this.items.delete(item.getName());
     }
 }

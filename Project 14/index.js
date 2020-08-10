@@ -63,16 +63,16 @@ var app = (function (exports) {
         constructor() {
             this.STORAGE_KEY = 'grocery-list';
         }
-        getGroceryListNames() {
+        getNames() {
             return JSON.parse(localStorage.getItem(this.STORAGE_KEY) || "[]");
         }
-        addItem(item) {
-            const groceryList = this.getGroceryListNames();
+        add(item) {
+            const groceryList = this.getNames();
             groceryList.push(item.getName());
             localStorage.setItem(this.STORAGE_KEY, JSON.stringify(groceryList));
         }
-        removeItem(item) {
-            const groceryList = this.getGroceryListNames();
+        remove(item) {
+            const groceryList = this.getNames();
             const itemIndex = groceryList.findIndex((name) => item.getName() === name);
             groceryList.splice(itemIndex, 1);
             localStorage.setItem(this.STORAGE_KEY, JSON.stringify(groceryList));
@@ -83,30 +83,27 @@ var app = (function (exports) {
         constructor() {
             this.groceryList = select(AppElement.GROCERY_LIST);
             this.items = new Map();
-            this.localStorage = new GroceryStorage();
+            this.groceryLocalStorage = new GroceryStorage();
         }
         renderLocalStorageItems() {
-            const localStorageItems = this.localStorage.getGroceryListNames()
+            const localStorageItems = this.groceryLocalStorage.getNames()
                 .map((name) => {
                 const item = GroceryItemComponent.of(name);
-                item.bind(this.removeItem.bind(this));
+                item.bind(this.remove.bind(this));
                 this.items.set(name, item);
                 return item;
             });
-            this.renderItems(...localStorageItems);
+            this.render(...localStorageItems);
         }
-        renderItems(...items) {
+        render(...items) {
             this.groceryList.append(...items.map(item => item.domElement));
         }
-        renderItem(item) {
-            this.groceryList.appendChild(item.domElement);
-        }
-        addItem(name) {
+        add(name) {
             const item = GroceryItemComponent.of(name);
             item.setName(name);
-            item.bind(this.removeItem.bind(this));
-            this.renderItem(item);
-            this.localStorage.addItem(item);
+            item.bind(this.remove.bind(this));
+            this.render(item);
+            this.groceryLocalStorage.add(item);
             this.items.set(name, item);
         }
         clearItems() {
@@ -115,8 +112,8 @@ var app = (function (exports) {
         getItems() {
             return Array.from(this.items.values());
         }
-        removeItem(item) {
-            this.localStorage.removeItem(item);
+        remove(item) {
+            this.groceryLocalStorage.remove(item);
             this.items.delete(item.getName());
         }
     }
@@ -129,7 +126,7 @@ var app = (function (exports) {
     }
     function addItem() {
         const name = input.value || '';
-        groceryService.addItem(name);
+        groceryService.add(name);
         input.value = '';
         input.focus();
     }

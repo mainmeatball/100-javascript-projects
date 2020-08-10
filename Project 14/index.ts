@@ -14,7 +14,7 @@ function renderLocalStorageData(): void {
 
 export function addItem(): void {
     const name = input.value || '';
-    groceryService.addItem(name);
+    groceryService.add(name);
     input.value = '';
     input.focus();
 }
