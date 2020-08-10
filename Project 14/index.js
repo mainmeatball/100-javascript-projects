@@ -77,35 +77,29 @@ var app = (function (exports) {
             this.items = [];
         }
         renderLocalStorageItems() {
-            const localStorageItems = this.groceryLocalStorage.getNames()
-                .map((name) => {
-                const item = new GroceryItemComponent(name);
-                item.createBound(this.remove.bind(this));
-                this.items.push(item);
-                return item;
-            });
-            this.render(...localStorageItems);
+            this.groceryLocalStorage.getNames()
+                .forEach((name) => this.saveAndRender(new GroceryItemComponent(name)));
         }
         add(name) {
             const item = new GroceryItemComponent(name);
-            item.createBound(this.remove.bind(this));
-            this.render(item);
+            this.saveAndRender(item);
             this.groceryLocalStorage.add(item);
-            this.items.push(item);
         }
         clearItems() {
             // clone because of the array modification while iterating
             const itemsCopy = [...this.items];
             itemsCopy.forEach((item) => item.remove());
         }
-        render(...items) {
-            items.forEach(item => item.renderInto(this.groceryList));
+        saveAndRender(item) {
+            item.createBound(this.remove.bind(this));
+            this.items.push(item);
+            item.renderInto(this.groceryList);
         }
         remove(removeItem) {
             this.groceryLocalStorage.remove(removeItem);
             const itemIndex = this.items.findIndex((item) => item.getName() === removeItem.getName());
             if (itemIndex === -1) {
-                throw new Error(`Expected "${removeItem}" to be present in local array`);
+                return;
             }
             this.items.splice(itemIndex, 1);
         }

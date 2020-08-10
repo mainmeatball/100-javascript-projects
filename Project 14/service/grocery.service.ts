@@ -9,22 +9,14 @@ export class GroceryService {
     private items: GroceryItemComponent[] = [];
 
     public renderLocalStorageItems(): void {
-        const localStorageItems = this.groceryLocalStorage.getNames()
-            .map((name: string) => {
-                const item = new GroceryItemComponent(name);
-                item.createBound(this.remove.bind(this));
-                this.items.push(item);
-                return item;
-            });
-        this.render(...localStorageItems);
+        this.groceryLocalStorage.getNames()
+            .forEach((name: string) => this.saveAndRender(new GroceryItemComponent(name)));
     }
 
     public add(name: string): void {
         const item = new GroceryItemComponent(name);
-        item.createBound(this.remove.bind(this));
-        this.render(item);
+        this.saveAndRender(item);
         this.groceryLocalStorage.add(item);
-        this.items.push(item);
     }
 
     public clearItems(): void {
@@ -33,15 +25,17 @@ export class GroceryService {
         itemsCopy.forEach((item: GroceryItemComponent) => item.remove());
     }
 
-    private render(...items: GroceryItemComponent[]): void {
-        items.forEach(item => item.renderInto(this.groceryList));
+    private saveAndRender(item: GroceryItemComponent): void {
+        item.createBound(this.remove.bind(this));
+        this.items.push(item);
+        item.renderInto(this.groceryList);
     }
 
     private remove(removeItem: GroceryItemComponent): void {
         this.groceryLocalStorage.remove(removeItem);
         const itemIndex = this.items.findIndex((item: GroceryItemComponent) => item.getName() === removeItem.getName());
         if (itemIndex === -1) {
-            throw new Error(`Expected "${removeItem}" to be present in local array`);
+            return;
         }
         this.items.splice(itemIndex, 1);
     }
