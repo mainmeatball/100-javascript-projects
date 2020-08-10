@@ -4,9 +4,9 @@ import {AppElement} from "../model/app-element.enum";
 import {select} from "../helper/select";
 
 export class GroceryService {
-    private groceryList = select(AppElement.GROCERY_LIST);
-    private items = new Map<string, GroceryItemComponent>();
-    private localStorage = new GroceryStorage();
+    private readonly groceryList = select(AppElement.GROCERY_LIST);
+    private readonly items = new Map<string, GroceryItemComponent>();
+    private readonly localStorage = new GroceryStorage();
 
     public renderLocalStorageItems(): void {
         const localStorageItems = this.localStorage.getGroceryListNames()
@@ -44,7 +44,7 @@ export class GroceryService {
         return Array.from(this.items.values());
     }
 
-    private removeItem(item: GroceryItemComponent) {
+    private removeItem(item: GroceryItemComponent): void {
         this.localStorage.removeItem(item);
         this.items.delete(item.getName());
     }

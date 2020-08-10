@@ -1,7 +1,7 @@
 import {NameAware} from "../interface/name-aware.interface";
 
 export class GroceryStorage {
-    private STORAGE_KEY = 'grocery-list';
+    private readonly STORAGE_KEY = 'grocery-list';
 
     public getGroceryListNames(): string[] {
         return JSON.parse(localStorage.getItem(this.STORAGE_KEY) || "[]");
