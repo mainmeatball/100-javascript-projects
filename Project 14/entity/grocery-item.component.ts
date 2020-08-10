@@ -4,25 +4,18 @@ import {select} from "../helper/select";
 import {Callback} from "../model/callback.type";
 
 export class GroceryItemComponent implements NameAware {
-    private readonly boundRemoveButtonFn = this.remove.bind(this);
     private boundCallbackFn: Callback<GroceryItemComponent> = () => true;
+    private readonly boundRemoveButtonFn = this.remove.bind(this);
+    private readonly name: HTMLElement;
+    private readonly removeButton: HTMLButtonElement;
+    public readonly domElement: HTMLElement;
 
-    public static of(name: string): GroceryItemComponent {
+    public constructor(name: string) {
         const template = select(AppElement.GROCERY_ITEM_TEMPLATE).content.cloneNode(true) as HTMLElement;
-        return this.ofTemplate(template).setName(name);
-    }
-
-    private static ofTemplate(template: HTMLElement): GroceryItemComponent {
-        return new GroceryItemComponent(
-            select(AppElement.GROCERY_ITEM_NAME, template),
-            select(AppElement.GROCERY_ITEM_REMOVE_BUTTON, template),
-            select(AppElement.GROCERY_ITEM, template)
-        );
-    }
-
-    private constructor(private name: HTMLElement,
-                        private removeButton: HTMLButtonElement,
-                        public domElement: HTMLElement) {
+        this.name = select(AppElement.GROCERY_ITEM_NAME, template);
+        this.removeButton = select(AppElement.GROCERY_ITEM_REMOVE_BUTTON, template);
+        this.domElement = select(AppElement.GROCERY_ITEM, template);
+        this.name.textContent = name;
         this.listen();
     }
 

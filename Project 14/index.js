@@ -21,20 +21,15 @@ var app = (function (exports) {
     })(AppElement || (AppElement = {}));
 
     class GroceryItemComponent {
-        constructor(name, removeButton, domElement) {
-            this.name = name;
-            this.removeButton = removeButton;
-            this.domElement = domElement;
-            this.boundRemoveButtonFn = this.remove.bind(this);
+        constructor(name) {
             this.boundCallbackFn = () => true;
-            this.listen();
-        }
-        static of(name) {
+            this.boundRemoveButtonFn = this.remove.bind(this);
             const template = select(AppElement.GROCERY_ITEM_TEMPLATE).content.cloneNode(true);
-            return this.ofTemplate(template).setName(name);
-        }
-        static ofTemplate(template) {
-            return new GroceryItemComponent(select(AppElement.GROCERY_ITEM_NAME, template), select(AppElement.GROCERY_ITEM_REMOVE_BUTTON, template), select(AppElement.GROCERY_ITEM, template));
+            this.name = select(AppElement.GROCERY_ITEM_NAME, template);
+            this.removeButton = select(AppElement.GROCERY_ITEM_REMOVE_BUTTON, template);
+            this.domElement = select(AppElement.GROCERY_ITEM, template);
+            this.name.textContent = name;
+            this.listen();
         }
         remove() {
             this.removeListener();
@@ -91,7 +86,7 @@ var app = (function (exports) {
         renderLocalStorageItems() {
             const localStorageItems = this.groceryLocalStorage.getNames()
                 .map((name) => {
-                const item = GroceryItemComponent.of(name);
+                const item = new GroceryItemComponent(name);
                 item.createBound(this.remove.bind(this));
                 this.items.push(item);
                 return item;
@@ -99,7 +94,7 @@ var app = (function (exports) {
             this.render(...localStorageItems);
         }
         add(name) {
-            const item = GroceryItemComponent.of(name);
+            const item = new GroceryItemComponent(name);
             item.createBound(this.remove.bind(this));
             this.render(item);
             this.groceryLocalStorage.add(item);
