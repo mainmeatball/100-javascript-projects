@@ -7,13 +7,13 @@ export class GroceryStorage {
         return JSON.parse(localStorage.getItem(this.STORAGE_KEY) || "[]");
     }
 
-    public add(item: NameAware) {
+    public add(item: NameAware): void {
         const groceryList = this.getNames();
         groceryList.push(item.getName());
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(groceryList));
     }
 
-    public remove(item: NameAware) {
+    public remove(item: NameAware): void {
         const groceryList = this.getNames();
         const itemIndex = groceryList.findIndex((name: string) => item.getName() === name);
         if (itemIndex === -1) {
