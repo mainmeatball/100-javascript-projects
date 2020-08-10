@@ -8,7 +8,7 @@ export class GroceryItemComponent implements NameAware {
     private readonly boundRemoveButtonFn = this.remove.bind(this);
     private readonly name: HTMLElement;
     private readonly removeButton: HTMLButtonElement;
-    public readonly domElement: HTMLElement;
+    private readonly domElement: HTMLElement;
 
     public constructor(name: string) {
         const template = select(AppElement.GROCERY_ITEM_TEMPLATE).content.cloneNode(true) as HTMLElement;
@@ -16,18 +16,13 @@ export class GroceryItemComponent implements NameAware {
         this.removeButton = select(AppElement.GROCERY_ITEM_REMOVE_BUTTON, template);
         this.domElement = select(AppElement.GROCERY_ITEM, template);
         this.name.textContent = name;
-        this.listen();
+        this.removeButton.addEventListener('click', this.boundRemoveButtonFn);
     }
 
     public remove(): void {
-        this.removeListener();
+        this.removeButton.removeEventListener('click', this.boundRemoveButtonFn);
         this.domElement.remove();
         this.boundCallbackFn(this);
-    }
-
-    public setName(name: string): GroceryItemComponent {
-        this.name.textContent = name;
-        return this;
     }
 
     public getName(): string {
@@ -38,11 +33,7 @@ export class GroceryItemComponent implements NameAware {
         this.boundCallbackFn = callbackFn;
     }
 
-    private listen(): void {
-        this.removeButton.addEventListener('click', this.boundRemoveButtonFn);
-    }
-
-    private removeListener(): void {
-        this.removeButton.removeEventListener('click', this.boundRemoveButtonFn);
+    public renderInto(container: HTMLElement): void {
+        container.appendChild(this.domElement);
     }
 }

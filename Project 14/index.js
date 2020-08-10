@@ -29,16 +29,12 @@ var app = (function (exports) {
             this.removeButton = select(AppElement.GROCERY_ITEM_REMOVE_BUTTON, template);
             this.domElement = select(AppElement.GROCERY_ITEM, template);
             this.name.textContent = name;
-            this.listen();
+            this.removeButton.addEventListener('click', this.boundRemoveButtonFn);
         }
         remove() {
-            this.removeListener();
+            this.removeButton.removeEventListener('click', this.boundRemoveButtonFn);
             this.domElement.remove();
             this.boundCallbackFn(this);
-        }
-        setName(name) {
-            this.name.textContent = name;
-            return this;
         }
         getName() {
             return this.name.textContent;
@@ -46,11 +42,8 @@ var app = (function (exports) {
         createBound(callbackFn) {
             this.boundCallbackFn = callbackFn;
         }
-        listen() {
-            this.removeButton.addEventListener('click', this.boundRemoveButtonFn);
-        }
-        removeListener() {
-            this.removeButton.removeEventListener('click', this.boundRemoveButtonFn);
+        renderInto(container) {
+            container.appendChild(this.domElement);
         }
     }
 
@@ -103,12 +96,10 @@ var app = (function (exports) {
         clearItems() {
             // clone because of the array modification while iterating
             const itemsCopy = [...this.items];
-            itemsCopy.forEach((item) => {
-                item.remove();
-            });
+            itemsCopy.forEach((item) => item.remove());
         }
         render(...items) {
-            this.groceryList.append(...items.map(item => item.domElement));
+            items.forEach(item => item.renderInto(this.groceryList));
         }
         remove(removeItem) {
             this.groceryLocalStorage.remove(removeItem);

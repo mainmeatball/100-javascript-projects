@@ -30,13 +30,11 @@ export class GroceryService {
     public clearItems(): void {
         // clone because of the array modification while iterating
         const itemsCopy = [...this.items];
-        itemsCopy.forEach((item: GroceryItemComponent) => {
-            item.remove()
-        });
+        itemsCopy.forEach((item: GroceryItemComponent) => item.remove());
     }
 
     private render(...items: GroceryItemComponent[]): void {
-        this.groceryList.append(...items.map(item => item.domElement));
+        items.forEach(item => item.renderInto(this.groceryList));
     }
 
     private remove(removeItem: GroceryItemComponent): void {
