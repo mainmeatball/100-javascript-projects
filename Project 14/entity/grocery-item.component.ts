@@ -29,9 +29,7 @@ export class GroceryItemComponent implements NameAware {
     public remove(): void {
         this.removeListener();
         this.domElement.remove();
-        if (this.boundLocalStorageFn) {
-            this.boundLocalStorageFn(this);
-        }
+        this.boundLocalStorageFn(this);
     }
 
     public setName(name: string): GroceryItemComponent {

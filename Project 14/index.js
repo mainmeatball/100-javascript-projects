@@ -39,9 +39,7 @@ var app = (function (exports) {
         remove() {
             this.removeListener();
             this.domElement.remove();
-            if (this.boundLocalStorageFn) {
-                this.boundLocalStorageFn(this);
-            }
+            this.boundLocalStorageFn(this);
         }
         setName(name) {
             this.name.textContent = name;
