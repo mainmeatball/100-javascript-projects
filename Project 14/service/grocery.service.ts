@@ -5,15 +5,15 @@ import {select} from "../helper/select";
 
 export class GroceryService {
     private readonly groceryList = select(AppElement.GROCERY_LIST);
-    private readonly items = new Map<string, GroceryItemComponent>();
     private readonly groceryLocalStorage = new GroceryStorage();
+    private items: GroceryItemComponent[] = [];
 
     public renderLocalStorageItems(): void {
         const localStorageItems = this.groceryLocalStorage.getNames()
             .map((name: string) => {
                 const item = GroceryItemComponent.of(name);
                 item.createBound(this.remove.bind(this));
-                this.items.set(name, item);
+                this.items.push(item);
                 return item;
             });
         this.render(...localStorageItems);
@@ -25,23 +25,26 @@ export class GroceryService {
 
     public add(name: string): void {
         const item = GroceryItemComponent.of(name);
-        item.setName(name);
         item.createBound(this.remove.bind(this));
         this.render(item);
         this.groceryLocalStorage.add(item);
-        this.items.set(name, item);
+        this.items.push(item);
     }
 
     public clearItems(): void {
-        this.getItems().forEach((item: GroceryItemComponent) => item.remove());
+        // clone because of the array modification while iterating
+        const itemsCopy = [...this.items];
+        itemsCopy.forEach((item: GroceryItemComponent) => {
+            item.remove()
+        });
     }
 
-    private getItems(): GroceryItemComponent[] {
-        return Array.from(this.items.values());
-    }
-
-    private remove(item: GroceryItemComponent): void {
-        this.groceryLocalStorage.remove(item);
-        this.items.delete(item.getName());
+    private remove(removeItem: GroceryItemComponent): void {
+        this.groceryLocalStorage.remove(removeItem);
+        const itemIndex = this.items.findIndex((item: GroceryItemComponent) => item.getName() === removeItem.getName());
+        if (itemIndex === -1) {
+            throw new Error(`Expected "${removeItem}" to be present in local array`);
+        }
+        this.items.splice(itemIndex, 1);
     }
 }

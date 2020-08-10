@@ -85,15 +85,15 @@ var app = (function (exports) {
     class GroceryService {
         constructor() {
             this.groceryList = select(AppElement.GROCERY_LIST);
-            this.items = new Map();
             this.groceryLocalStorage = new GroceryStorage();
+            this.items = [];
         }
         renderLocalStorageItems() {
             const localStorageItems = this.groceryLocalStorage.getNames()
                 .map((name) => {
                 const item = GroceryItemComponent.of(name);
                 item.createBound(this.remove.bind(this));
-                this.items.set(name, item);
+                this.items.push(item);
                 return item;
             });
             this.render(...localStorageItems);
@@ -103,21 +103,25 @@ var app = (function (exports) {
         }
         add(name) {
             const item = GroceryItemComponent.of(name);
-            item.setName(name);
             item.createBound(this.remove.bind(this));
             this.render(item);
             this.groceryLocalStorage.add(item);
-            this.items.set(name, item);
+            this.items.push(item);
         }
         clearItems() {
-            this.getItems().forEach((item) => item.remove());
+            // clone because of the array modification while iterating
+            const itemsCopy = [...this.items];
+            itemsCopy.forEach((item) => {
+                item.remove();
+            });
         }
-        getItems() {
-            return Array.from(this.items.values());
-        }
-        remove(item) {
-            this.groceryLocalStorage.remove(item);
-            this.items.delete(item.getName());
+        remove(removeItem) {
+            this.groceryLocalStorage.remove(removeItem);
+            const itemIndex = this.items.findIndex((item) => item.getName() === removeItem.getName());
+            if (itemIndex === -1) {
+                throw new Error(`Expected "${removeItem}" to be present in local array`);
+            }
+            this.items.splice(itemIndex, 1);
         }
     }
 
