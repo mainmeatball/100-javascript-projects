@@ -1,0 +1,105 @@
+@use '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+$font-path: '../node_modules/@fortawesome/fontawesome-free/webfonts';
+@use '~@fortawesome/fontawesome-free/scss/regular.scss' with (
+    $fa-font-path: $font-path,
+);
+@use '~@fortawesome/fontawesome-free/scss/solid.scss' with (
+    $fa-font-path: $font-path,
+);
+
+html, body {
+	height: 100%;
+}
+
+body {
+	background-color: #F5F5F5;
+	font-family: Helvetica, serif;
+	color: #333333;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.wrapper {
+	top: 0;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	width: 50%;
+}
+
+form {
+	width: 100%;
+	display: flex;
+	margin-bottom: 10px;
+}
+
+form > input {
+	flex: 1;
+	font-size: 20px;
+	padding: 8px;
+	border: 1px solid #333333;
+	border-right: none;
+}
+
+button {
+	cursor: pointer;
+}
+
+.button {
+	font-weight: bold;
+	font-size: 1em;
+	transition: 0.2s;
+}
+
+.button:hover {
+	background-color: #666666;
+	color: #DDDDDD;
+}
+
+.clear-all {
+	height: 42px;
+	margin-top: 10px;
+}
+
+.grocery-list {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.grocery-item {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	border: 2px solid black;
+	border-radius: 5px;
+	width: calc(100% - 20px);
+	height: 20px;
+	margin: 10px 0;
+	padding: 10px;
+}
+
+.grocery-item > p {
+	background-color: #F5F5F5;
+	border: none;
+	flex: 1;
+	font-size: 20px;
+}
+
+.grocery-item > button {
+	border: none;
+	background: none;
+	color: red;
+	transition: font-size 0.2s ease;
+}
+
+.grocery-item > button:hover {
+	font-size: 16px;
+}
+
+.grocery-item > button:focus {
+	outline: none;
+}
