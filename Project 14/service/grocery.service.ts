@@ -1,7 +1,7 @@
-import {GroceryItemComponent} from "../entity/grocery-item.component";
-import {GroceryStorage} from "../helper/grocery-storage.handler";
-import {AppElement} from "../model/app-element.enum";
-import {select} from "../helper/select";
+import {GroceryItemComponent} from '../entity/grocery-item.component';
+import {GroceryStorage} from '../helper/grocery-storage.handler';
+import {AppElement} from '../model/app-element.enum';
+import {select} from '../helper/select';
 
 export class GroceryService {
     private readonly groceryList = select(AppElement.GROCERY_LIST);

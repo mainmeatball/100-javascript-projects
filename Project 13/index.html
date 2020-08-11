@@ -1,14 +1,11 @@
-<!DOCTYPE HTML>
 <html lang="en">
 <head>
 	<title>Grocery Cart</title>
-	<link rel="stylesheet" href="index.css">
-	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
 </head>
 <body onload="app.page.setCards()">
 	<div class="header">
 		<button id="cart-preview" class="cart-preview" onclick="app.page.toggleShoppingList()">
-			<i class="fa fa-shopping-cart fa-lg"></i>
+			<i class="fa fa-shopping-cart"></i>
 			<span id="quantity" class="quantity">0</span>
 			<span>Items - $</span>
 			<span class="amount">0</span>
@@ -22,7 +19,7 @@
 							<p class="cart-item-name"></p>
 							<p class="cart-item-price"></p>
 						</div>
-						<button class="remove"><i class="fa fa-trash-o fa-2x"></i></button>
+						<button class="remove"><i class="fa fa-trash fa-2x"></i></button>
 					</div>
 				</template>
 			</div>
@@ -40,7 +37,7 @@
 	<template id="frame-template">
 		<div class="frame">
 			<div class="image-div">
-				<div class="shop-icon"><i class="fa fa-shopping-cart fa-2x"></i></div>
+				<div class="shop-icon"><i class="fa fa-shopping-cart"></i></div>
 				<img class="frame-image" src="" alt="">
 			</div>
 			<div id="title" class="title">
@@ -49,6 +46,5 @@
 			</div>
 		</div>
 	</template>
-	<script src="index.js"></script>
 </body>
 </html>

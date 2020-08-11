@@ -1,4 +1,4 @@
 export class Grid {
-    public constructor(public panel: HTMLDivElement,
-                       public frameTemplate: HTMLTemplateElement) {}
+    constructor(public panel: HTMLDivElement,
+                public frameTemplate: HTMLTemplateElement) {}
 }

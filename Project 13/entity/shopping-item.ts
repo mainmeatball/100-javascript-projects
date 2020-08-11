@@ -1,6 +1,6 @@
-import {ElementListener} from "./element-listener";
-import {ShopValues} from "./shop-values";
-import {PriceUtils} from "./price-utils";
+import {ElementListener} from './element-listener';
+import {ShopValues} from './shop-values';
+import {numberifyPrice} from './price-utils';
 
 export class ShoppingItem {
     public readonly listeners: ElementListener[];
@@ -8,13 +8,13 @@ export class ShoppingItem {
     public static of(element: Element, shopValues: ShopValues): ShoppingItem {
         return new ShoppingItem(
             shopValues,
-            <HTMLImageElement>element.querySelector('.cart-item-image'),
-            <HTMLParagraphElement>element.querySelector('.cart-item-name'),
-            <HTMLParagraphElement>element.querySelector('.cart-item-price'),
-            <HTMLButtonElement>element.querySelector('.remove'),
-            <HTMLDivElement>element.querySelector('.cart-item')
+            element.querySelector('.cart-item-image') as HTMLImageElement,
+            element.querySelector('.cart-item-name') as HTMLParagraphElement,
+            element.querySelector('.cart-item-price') as HTMLParagraphElement,
+            element.querySelector('.remove') as HTMLButtonElement,
+            element.querySelector('.cart-item') as HTMLDivElement
         );
-    };
+    }
 
     private constructor(public shopValues: ShopValues,
                         public image: HTMLImageElement,
@@ -31,6 +31,6 @@ export class ShoppingItem {
     public removeItem(): void {
         this.listeners.forEach(el => el.removeListener());
         this.domElement.remove();
-        this.shopValues.decreaseValues(PriceUtils.numberifyPrice(this.price.textContent!))
+        this.shopValues.decreaseValues(numberifyPrice(this.price.textContent || ''));
     }
 }

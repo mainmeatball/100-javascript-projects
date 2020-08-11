@@ -1,7 +1,7 @@
 import './index.scss';
-import {select} from "./helper/select";
-import {GroceryService} from "./service/grocery.service";
-import {AppElement} from "./model/app-element.enum";
+import {select} from './helper/select';
+import {GroceryService} from './service/grocery.service';
+import {AppElement} from './model/app-element.enum';
 
 const input = select(AppElement.INPUT_FIELD);
 const groceryService = new GroceryService();

@@ -1,7 +1,7 @@
-import {NameAware} from "../interface/name-aware.interface";
-import {AppElement} from "../model/app-element.enum";
-import {select} from "../helper/select";
-import {Callback} from "../model/callback.type";
+import {NameAware} from '../interface/name-aware.interface';
+import {AppElement} from '../model/app-element.enum';
+import {select} from '../helper/select';
+import {Callback} from '../model/callback.type';
 
 export class GroceryItemComponent implements NameAware {
     private boundCallbackFn: Callback<GroceryItemComponent> = () => true;
@@ -10,7 +10,7 @@ export class GroceryItemComponent implements NameAware {
     private readonly removeButton: HTMLButtonElement;
     private readonly domElement: HTMLElement;
 
-    public constructor(name: string) {
+    constructor(name: string) {
         const template = select(AppElement.GROCERY_ITEM_TEMPLATE).content.cloneNode(true) as HTMLElement;
         this.name = select(AppElement.GROCERY_ITEM_NAME, template);
         this.removeButton = select(AppElement.GROCERY_ITEM_REMOVE_BUTTON, template);
@@ -26,7 +26,7 @@ export class GroceryItemComponent implements NameAware {
     }
 
     public getName(): string {
-        return this.name.textContent!;
+        return this.name.textContent || '';
     }
 
     public createBound(callbackFn: Callback<GroceryItemComponent>): void {
