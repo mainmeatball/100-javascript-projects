@@ -1,9 +1,7 @@
-export class PriceUtils {
-    public static numberifyPrice(price: string): number {
-        return +price.replace(/[.$]/g, '');
-    }
+export function numberifyPrice(price: string): number {
+    return +price.replace(/[.$]/g, '');
+}
 
-    public static stringifyPrice(price: number): string {
-        return `${price}`.split(/(?=(?:...)*$)/).join('.') + '$';
-    }
+export function stringifyPrice(price: number): string {
+    return `${price}`.split(/(?=(?:...)*$)/).join('.') + '$';
 }

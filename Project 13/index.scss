@@ -1,3 +1,7 @@
+@use '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@use '~@fortawesome/fontawesome-free/scss/regular.scss';
+@use '~@fortawesome/fontawesome-free/scss/solid.scss';
+
 html, body {
 	height: 100%;
 	width: 100%;
@@ -196,12 +200,16 @@ body {
 	outline: none;
 }
 
-.fa-trash-o {
+.fa-trash {
 	transition: color 0.3s ease;
 }
 
 .remove:hover > i {
 	color: white;
+}
+
+.shop-icon > i {
+	font-size: 24px;
 }
 
 .move-x {

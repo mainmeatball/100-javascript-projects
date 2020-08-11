@@ -1,22 +1,23 @@
-import {Grid} from "./entity/grid";
-import {Shop} from "./entity/shop";
-import {Page} from "./entity/page";
-import {ShopValues} from "./entity/shop-values";
+import './index.scss';
+import {Grid} from './entity/grid';
+import {Shop} from './entity/shop';
+import {Page} from './entity/page';
+import {ShopValues} from './entity/shop-values';
 
 const shopValues = new ShopValues(
-    <HTMLElement>document.getElementById('quantity'),
-    <HTMLElement[]>Array.from(document.getElementsByClassName('amount'))
-)
+    document.getElementById('quantity') as HTMLElement,
+    Array.from(document.getElementsByClassName('amount')) as HTMLElement[]
+);
 
 const shop = new Shop(
-    <HTMLDivElement>document.getElementById('shopping-window'),
-    <HTMLTemplateElement>document.getElementById('cart-item-template'),
+    document.getElementById('shopping-window') as HTMLDivElement,
+    document.getElementById('cart-item-template') as HTMLTemplateElement,
     shopValues
 );
 
 const grid = new Grid(
-    <HTMLDivElement>document.getElementById('flex-grid'),
-    <HTMLTemplateElement>document.getElementById('frame-template')
+    document.getElementById('flex-grid') as HTMLDivElement,
+    document.getElementById('frame-template') as HTMLTemplateElement
 );
 
 export const page = new Page(shop, grid);
