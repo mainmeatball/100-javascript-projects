@@ -5,23 +5,23 @@ import {stringifyPrice} from './price-utils';
 
 export class Shop {
     public static cars: Vehicle[] = [
-        new Vehicle('../../resources/vehicles/car1.jpg', 'Ferrari', 500_000),
-        new Vehicle('../../resources/vehicles/car2.jpg', 'Lamborghini', 499_000)
+        new Vehicle('../resources/vehicles/car1.jpg', 'Ferrari', 500_000),
+        new Vehicle('../resources/vehicles/car2.jpg', 'Lamborghini', 499_000)
     ];
 
     public static bikes: Vehicle[] = [
-        new Vehicle('../../resources/vehicles/bike1.jpg', 'Kawasaki', 100_000),
-        new Vehicle('../../resources/vehicles/bike2.jpg', 'Samurai', 99_000)
+        new Vehicle('../resources/vehicles/bike1.jpg', 'Kawasaki', 100_000),
+        new Vehicle('../resources/vehicles/bike2.jpg', 'Samurai', 99_000)
     ];
 
     public static bicycles: Vehicle[] = [
-        new Vehicle('../../resources/vehicles/bicycle1.jpg', 'Gucci', 5_000),
-        new Vehicle('../../resources/vehicles/bicycle2.jpg', 'Tesla', 10_000)
+        new Vehicle('../resources/vehicles/bicycle1.jpg', 'Gucci', 5_000),
+        new Vehicle('../resources/vehicles/bicycle2.jpg', 'Tesla', 10_000)
     ];
 
     public static planes: Vehicle[] = [
-        new Vehicle('../../resources/vehicles/plane1.jpg', 'Boeing', 1_000_000),
-        new Vehicle('../../resources/vehicles/plane2.jpg', 'S7', 900_000)
+        new Vehicle('../resources/vehicles/plane1.jpg', 'Boeing', 1_000_000),
+        new Vehicle('../resources/vehicles/plane2.jpg', 'S7', 900_000)
     ];
 
     public static allVehicles: Vehicle[] = [
