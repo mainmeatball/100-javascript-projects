@@ -46,10 +46,7 @@ var app = (function (exports) {
             // For generating random image every time browser sends request
             const cacheBooster = `?cb=` + Math.floor(Math.random() * 50000);
             const courseCard = new CourseCardComponent(CourseService.RANDOM_IMAGE_SOURCE + cacheBooster, name, course, author);
-            this.saveAndRender(courseCard);
-        }
-        saveAndRender(item) {
-            item.renderInto(this.coursesMasonry);
+            courseCard.renderInto(this.coursesMasonry);
         }
     }
     CourseService.RANDOM_IMAGE_SOURCE = 'https://source.unsplash.com/random';
