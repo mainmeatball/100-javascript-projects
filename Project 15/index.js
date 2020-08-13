@@ -27,15 +27,11 @@ var app = (function (exports) {
     class CourseCardComponent {
         constructor(imageSrc, name, course, author) {
             const template = select(AppElement.COURSE_CARD_TEMPLATE).content.cloneNode(true);
-            this.image = select(AppElement.COURSE_CARD_IMAGE, template);
-            this.name = select(AppElement.COURSE_CARD_NAME, template);
-            this.course = select(AppElement.COURSE_CARD_COURSE, template);
-            this.author = select(AppElement.COURSE_CARD_AUTHOR, template);
+            select(AppElement.COURSE_CARD_IMAGE, template).src = imageSrc;
+            select(AppElement.COURSE_CARD_NAME, template).textContent = name;
+            select(AppElement.COURSE_CARD_COURSE, template).textContent = course;
+            select(AppElement.COURSE_CARD_AUTHOR, template).textContent = author;
             this.domElement = select(AppElement.COURSE_CARD, template);
-            this.image.src = imageSrc;
-            this.name.textContent = name;
-            this.course.textContent = course;
-            this.author.textContent = author;
         }
         renderInto(container) {
             container.appendChild(this.domElement);
