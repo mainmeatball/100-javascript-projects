@@ -1,4 +1,3 @@
-import './index.css';
 import {Grid} from './entity/grid';
 import {Shop} from './entity/shop';
 import {Page} from './entity/page';

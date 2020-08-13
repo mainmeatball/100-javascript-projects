@@ -1,4 +1,3 @@
-import './index.css';
 import {select} from './helper/select';
 import {GroceryService} from './service/grocery.service';
 import {AppElement} from './model/app-element.enum';
