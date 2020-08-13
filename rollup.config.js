@@ -26,8 +26,9 @@ function createConfig(fileName) {
 }
 
 const configsList = [
-    'Project 13/index',
-    'Project 14/index',
+    // 'Project 13/index',
+    // 'Project 14/index',
+    'Project 15/index',
 ].map((fileName) => createConfig(fileName));
 
 export default configsList;

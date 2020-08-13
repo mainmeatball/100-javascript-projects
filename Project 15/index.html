@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+	<title>Courses Form</title>
+	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+	<div id="wrapper" class="wrapper">
+		<h1 class="header">Get A Free Course</h1>
+		<form action="#" onsubmit="app.addCourse(); return false;">
+			<div class="name-input-wrapper">
+				<label for="name-input"><i class="fa fa-user"></i></label>
+				<input id="name-input" class="name-input" placeholder="Customer Name" required>
+			</div>
+			<div class="course-input-wrapper">
+				<label for="course-input"><i class="fa fa-book"></i></label>
+				<input id="course-input" class="course-input" placeholder="Course" required>
+			</div>
+			<div class="author-input-wrapper">
+				<label for="author-input"><i class="fa fa-user-circle-o"></i></label>
+				<input id="author-input" class="author-input" placeholder="Author" required>
+			</div>
+			<button type="submit" class="button">SUBMIT</button>
+		</form>
+		<div id="courses-masonry" class="courses-masonry">
+			<!-- Placeholder for course card elements -->
+		</div>
+	</div>
+
+	<!-- Course card template -->
+	<template id="course-card-template">
+		<div class="course-card">
+			<img src="" alt="" class="course-card-image" loading="lazy">
+			<div class="course-card-data">
+				<div class="course-card-name-row">
+					<p class="course-card-name-label">Name:</p>
+					<p class="course-card-name"></p>
+				</div>
+				<div class="course-card-course-row">
+					<p class="course-card-course-label">Course:</p>
+					<p class="course-card-course"></p>
+				</div>
+				<div class="course-card-author-row">
+					<p class="course-card-author-label">Author:</p>
+					<p class="course-card-author"></p>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<script src="index.js"></script>
+</body>
+</html>
