@@ -4,7 +4,6 @@
         "module": "es2020",
         "strict": true,
         "alwaysStrict": true,
-        "jsx": "preserve",
         "importHelpers": true,
         "moduleResolution": "node",
         "experimentalDecorators": true,
@@ -29,10 +28,7 @@
     },
     "include": [
         "src/**/*.ts",
-        "src/**/*.tsx",
-        "src/**/*.vue",
-        "tests/**/*.ts",
-        "tests/**/*.tsx"
+        "src/**/*.vue"
     ],
     "exclude": [
         "node_modules"
