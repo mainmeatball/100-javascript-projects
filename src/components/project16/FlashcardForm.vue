@@ -5,17 +5,19 @@
         <button
             v-on:click="$emit('hideForm')"
             class="close-button"
-            type="button">
+            type="button"
+            aria-label="Close form"
+            title="Close form">
             x
         </button>
-        <label for="input-question"/>
+        <label for="input-question">Question:</label>
         <input
             v-model="question"
             class="input-question"
             id="input-question"
             placeholder="Enter Your Question ..."
             required>
-        <label for="input-answer"/>
+        <label for="input-answer">Answer:</label>
         <input
             v-model="answer"
             class="input-answer"
